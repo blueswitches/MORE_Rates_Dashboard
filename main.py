@@ -146,6 +146,27 @@ cursor.execute(query_16)
 # Fetch the result
 result_16 = cursor.fetchone()
 
+# SQL query to retrieve Short_Name for Feb_23_Ranking values 1 to 5
+query_17 = """
+SELECT Short_Name, Feb_23
+FROM residential_rate
+WHERE Feb_23_Ranking BETWEEN 1 AND 5
+ORDER BY Feb_23_Ranking ASC;
+"""
+cursor.execute(query_17)
+result_17 = cursor.fetchall()
+
+# SQL query to retrieve Short_Name for Feb_23_Ranking_Vis values 1 to 5
+query_18 = """
+SELECT Short_Name, Feb_23
+FROM residential_rate
+WHERE Feb_23_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Feb_23_Ranking_Vis ASC;
+"""
+cursor.execute(query_18)
+result_18 = cursor.fetchall()
+
+# SQL 
 if month_selected == 'January 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
@@ -219,3 +240,28 @@ elif month_selected == 'February 2023':
 
     df_6 = pd.DataFrame(table_6)
     st.dataframe(df_6, hide_index=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        table_2 = {
+            "DU": [row[0] for row in result_17], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_17] # Extract Residential Rate
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(df_2, hide_index=True)
+
+    # 3rd Table
+    with col2:
+        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        table_3 = {
+            "DU": [row[0] for row in result_18], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_18] # Extract Residential Rate
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(df_3, hide_index=True)
