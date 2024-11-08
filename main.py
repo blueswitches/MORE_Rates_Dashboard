@@ -166,6 +166,24 @@ ORDER BY Feb_23_Ranking_Vis ASC;
 cursor.execute(query_18)
 result_18 = cursor.fetchall()
 
+query_19 = """
+SELECT Short_Name, Feb_23
+FROM generation_rate
+WHERE Feb_23_Ranking BETWEEN 1 AND 5
+ORDER BY Feb_23_Ranking ASC;
+"""
+cursor.execute(query_19)
+result_19 = cursor.fetchall()
+
+query_20 = """
+SELECT Short_Name, Feb_23
+FROM generation_rate
+WHERE Feb_23_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Feb_23_Ranking_Vis ASC;
+"""
+cursor.execute(query_20)
+result_20 = cursor.fetchall()
+
 # SQL 
 if month_selected == 'January 2023':
     # 1st Table
@@ -265,3 +283,28 @@ elif month_selected == 'February 2023':
 
         df_3 = pd.DataFrame(table_3)
         st.dataframe(df_3, hide_index=True)
+    
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        table_4 = {
+            "DU": [row[0] for row in query_19], # Extract Short_Name
+            "Residential Rate": [row[1] for row in query_19] # Extract Residential Rate
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(df_4, hide_index=True)
+
+    # 5th Table
+    with col4:
+        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        table_5 = {
+            "DU": [row[0] for row in query_20], # Extract Short_Name
+            "Residential Rate": [row[1] for row in query_20] # Extract Residential Rate
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(df_5, hide_index=True)
