@@ -16,6 +16,19 @@ hide_st_style = """
            """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
+# Inject CSS to color the selectbox
+st.markdown("""
+    <style>
+    div[data-baseweb="select"] > div {
+        background-color: lightblue;  /* Background color of the dropdown */
+        color: black;                 /* Text color inside the dropdown */
+    }
+    div[data-baseweb="select"] > div:hover {
+        background-color: deepskyblue; /* Hover color of the dropdown */
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Create a selectbox widget for the user to choose a month and year for data filtering
 month_selected = st.selectbox(label='For the month of', options=['January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023', 'August 2023', 'September 2023', 'October 2023', 'November 2023', 'December 2023', 'January 2024', 'February 2024', 'March 2024', 'April 2024', 'May 2024', 'June 2024', 'July 2024', 'August 2024', 'September 2024'])
 
