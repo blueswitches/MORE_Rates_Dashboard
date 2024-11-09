@@ -20,7 +20,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 st.markdown("""
     <style>
     div[data-baseweb="select"] > div {
-        background-color: lightblue;  /* Background color of the dropdown */
+        background-color: #17B169;  /* Background color of the dropdown */
         color: black;                 /* Text color inside the dropdown */
     }
     div[data-baseweb="select"] > div:hover {
