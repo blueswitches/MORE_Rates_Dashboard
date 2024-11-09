@@ -2817,7 +2817,7 @@ elif month_selected == 'August 2024':
         df_5 = pd.DataFrame(table_5)
         st.dataframe(df_5, hide_index=True)
 
-elif month_selected == 'September 2024':
+else:
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     table_1 = {
