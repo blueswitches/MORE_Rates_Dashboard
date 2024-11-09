@@ -482,74 +482,74 @@ cursor.execute(query_60)
 result_60 = cursor.fetchall()
 
 # July 2023
-query_61 = "SELECT July_23 FROM residential_rate WHERE Short_Name = 'MORE Power'"
+query_61 = "SELECT Jul_23 FROM residential_rate WHERE Short_Name = 'MORE Power'"
 # Execute the query
 cursor.execute(query_61)
 # Fetch the result
 result_61 = cursor.fetchone()
 
-query_62 = "SELECT July_23 FROM residential_rate WHERE Short_Name = 'CENECO'"
+query_62 = "SELECT Jul_23 FROM residential_rate WHERE Short_Name = 'CENECO'"
 # Execute the query
 cursor.execute(query_62)
 # Fetch the result
 result_62 = cursor.fetchone()
 
-query_63 = "SELECT July_23 FROM residential_rate WHERE Short_Name = 'BLCI'"
+query_63 = "SELECT Jul_23 FROM residential_rate WHERE Short_Name = 'BLCI'"
 # Execute the query
 cursor.execute(query_63)
 # Fetch the result
 result_63 = cursor.fetchone()
 
-query_64 = "SELECT July_23 FROM generation_rate WHERE Short_Name = 'MORE Power'"
+query_64 = "SELECT Jul_23 FROM generation_rate WHERE Short_Name = 'MORE Power'"
 # Execute the query
 cursor.execute(query_64)
 # Fetch the result
 result_64 = cursor.fetchone()
 
-query_65 = "SELECT July_23 FROM generation_rate WHERE Short_Name = 'CENECO'"
+query_65 = "SELECT Jul_23 FROM generation_rate WHERE Short_Name = 'CENECO'"
 # Execute the query
 cursor.execute(query_65)
 # Fetch the result
 result_65 = cursor.fetchone()
 
-query_66 = "SELECT July_23 FROM generation_rate WHERE Short_Name = 'BLCI'"
+query_66 = "SELECT Jul_23 FROM generation_rate WHERE Short_Name = 'BLCI'"
 # Execute the query
 cursor.execute(query_66)
 # Fetch the result
 result_66 = cursor.fetchone()
 
 query_67 = """
-SELECT Short_Name, July_23
+SELECT Short_Name, Jul_23
 FROM residential_rate
-WHERE July_23_Ranking BETWEEN 1 AND 5
-ORDER BY July_23_Ranking ASC;
+WHERE Jul_23_Ranking BETWEEN 1 AND 5
+ORDER BY Jul_23_Ranking ASC;
 """
 cursor.execute(query_67)
 result_67 = cursor.fetchall()
 
 query_68 = """
-SELECT Short_Name, July_23
+SELECT Short_Name, Jul_23
 FROM residential_rate
-WHERE July_23_Ranking_Vis BETWEEN 1 AND 5
-ORDER BY July_23_Ranking_Vis ASC;
+WHERE Jul_23_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Jul_23_Ranking_Vis ASC;
 """
 cursor.execute(query_68)
 result_68 = cursor.fetchall()
 
 query_69 = """
-SELECT Short_Name, July_23
+SELECT Short_Name, Jul_23
 FROM generation_rate
-WHERE July_23_Ranking BETWEEN 1 AND 5
-ORDER BY July_23_Ranking ASC;
+WHERE Jul_23_Ranking BETWEEN 1 AND 5
+ORDER BY Jul_23_Ranking ASC;
 """
 cursor.execute(query_69)
 result_69 = cursor.fetchall()
 
 query_70 = """
-SELECT Short_Name, July_23
+SELECT Short_Name, Jul_23
 FROM generation_rate
-WHERE July_23_Ranking_Vis BETWEEN 1 AND 5
-ORDER BY July_23_Ranking_Vis ASC;
+WHERE Jul_23_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Jul_23_Ranking_Vis ASC;
 """
 cursor.execute(query_70)
 result_70 = cursor.fetchall()
