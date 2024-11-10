@@ -24,7 +24,7 @@ st.markdown("""
         color: white;                 /* Text color inside the dropdown */
     }
     div[data-baseweb="select"] > div:hover {
-        background-color: deepskyblue; /* Hover color of the dropdown */
+        background-color: #3CB371; /* Hover color of the dropdown */
     }
     </style>
     """, unsafe_allow_html=True)
