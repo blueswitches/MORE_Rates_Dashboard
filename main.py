@@ -60,7 +60,6 @@ cursor.execute(query_2)
 # Fetch the result
 result_2 = cursor.fetchone()
 
-
 # SQL query to retrieve the residential_rate value from Jan_23 where Short_Name is 'BLCI'
 query_3 = "SELECT Jan_23 FROM residential_rate WHERE Short_Name = 'BLCI'"
 # Execute the query
@@ -1635,7 +1634,7 @@ if month_selected == 'January 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_9], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_9] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_9] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1646,7 +1645,7 @@ if month_selected == 'January 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_10], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_10] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_10] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -1697,7 +1696,7 @@ elif month_selected == 'February 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_19], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_19] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_19] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1708,7 +1707,7 @@ elif month_selected == 'February 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_20], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_20] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_20] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -1759,7 +1758,7 @@ elif month_selected == 'March 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_29], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_29] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_29] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1770,7 +1769,7 @@ elif month_selected == 'March 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_30], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_30] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_30] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -1821,7 +1820,7 @@ elif month_selected == 'April 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_39], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_39] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_39] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1832,7 +1831,7 @@ elif month_selected == 'April 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_40], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_40] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_40] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -1883,7 +1882,7 @@ elif month_selected == 'May 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_49], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_49] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_49] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1894,7 +1893,7 @@ elif month_selected == 'May 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_50], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_50] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_50] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -1945,7 +1944,7 @@ elif month_selected == 'June 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_59], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_59] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_59] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -1956,7 +1955,7 @@ elif month_selected == 'June 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_60], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_60] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_60] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2007,7 +2006,7 @@ elif month_selected == 'July 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_69], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_69] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_69] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2018,7 +2017,7 @@ elif month_selected == 'July 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_70], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_70] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_70] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2069,7 +2068,7 @@ elif month_selected == 'August 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_79], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_79] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_79] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2080,7 +2079,7 @@ elif month_selected == 'August 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_80], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_80] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_80] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2131,7 +2130,7 @@ elif month_selected == 'September 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_89], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_89] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_89] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2142,7 +2141,7 @@ elif month_selected == 'September 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_90], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_90] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_90] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2193,7 +2192,7 @@ elif month_selected == 'October 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_99], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_99] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_99] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2204,7 +2203,7 @@ elif month_selected == 'October 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_100], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_100] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_100] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2255,7 +2254,7 @@ elif month_selected == 'November 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_109], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_109] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_109] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2266,7 +2265,7 @@ elif month_selected == 'November 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_110], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_110] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_110] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2317,7 +2316,7 @@ elif month_selected == 'December 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_119], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_119] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_119] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2328,7 +2327,7 @@ elif month_selected == 'December 2023':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_120], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_120] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_120] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2379,7 +2378,7 @@ elif month_selected == 'January 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_129], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_129] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_129] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2390,7 +2389,7 @@ elif month_selected == 'January 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_130], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_130] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_130] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2441,7 +2440,7 @@ elif month_selected == 'February 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_139], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_139] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_139] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2452,7 +2451,7 @@ elif month_selected == 'February 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_140], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_140] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_140] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2503,7 +2502,7 @@ elif month_selected == 'March 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_149], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_149] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_149] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2514,7 +2513,7 @@ elif month_selected == 'March 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_150], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_150] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_150] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2565,7 +2564,7 @@ elif month_selected == 'April 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_159], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_159] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_159] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2576,7 +2575,7 @@ elif month_selected == 'April 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_160], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_160] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_160] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2627,7 +2626,7 @@ elif month_selected == 'May 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_169], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_169] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_169] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2638,7 +2637,7 @@ elif month_selected == 'May 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_170], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_170] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_170] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2689,7 +2688,7 @@ elif month_selected == 'June 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_179], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_179] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_179] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2700,7 +2699,7 @@ elif month_selected == 'June 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_180], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_180] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_180] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2751,7 +2750,7 @@ elif month_selected == 'July 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_189], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_189] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_189] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2762,7 +2761,7 @@ elif month_selected == 'July 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_190], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_190] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_190] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2813,7 +2812,7 @@ elif month_selected == 'August 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_199], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_199] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_199] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2824,7 +2823,7 @@ elif month_selected == 'August 2024':
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_200], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_200] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_200] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
@@ -2875,7 +2874,7 @@ else:
         st.markdown("Top 5 Lowest Generation Rate in the Philippines")
         table_4 = {
             "DU": [row[0] for row in result_209], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_209] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_209] # Extract Residential Rate
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -2886,7 +2885,7 @@ else:
         st.markdown("Top 5 Lowest Generation Rate in the Visayas")
         table_5 = {
             "DU": [row[0] for row in result_210], # Extract Short_Name
-            "Residential Rate": [row[1] for row in result_210] # Extract Residential Rate
+            "Generation Rate": [row[1] for row in result_210] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
