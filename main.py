@@ -30,7 +30,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Create a selectbox widget for the user to choose a month and year for data filtering
-month_selected = st.selectbox(label='For the month of', options=['January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023', 'August 2023', 'September 2023', 'October 2023', 'November 2023', 'December 2023', 'January 2024', 'February 2024', 'March 2024', 'April 2024', 'May 2024', 'June 2024', 'July 2024', 'August 2024', 'September 2024'])
+month_selected = st.selectbox(label='For the month of', options=['January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023', 'August 2023', 'September 2023', 'October 2023', 'November 2023', 'December 2023', 'January 2024', 'February 2024', 'March 2024', 'April 2024', 'May 2024', 'June 2024', 'July 2024', 'August 2024', 'September 2024', 'October 2024', 'November 2024'])
 
 # MySQL connection
 conn = mysql.connector.connect(
@@ -1588,6 +1588,151 @@ ORDER BY Sep_24_Ranking_Vis ASC;
 cursor.execute(query_210)
 result_210 = cursor.fetchall()
 
+# October 2024
+query_211 = "SELECT Oct_24 FROM residential_rate WHERE Short_Name = 'MORE Power'"
+# Execute the query
+cursor.execute(query_211)
+# Fetch the result
+result_211 = cursor.fetchone()
+
+query_212 = "SELECT Oct_24 FROM residential_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_212)
+# Fetch the result
+result_212 = cursor.fetchone()
+
+query_213 = "SELECT Oct_24 FROM residential_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_213)
+# Fetch the result
+result_213 = cursor.fetchone()
+
+query_214 = "SELECT Oct_24 FROM generation_rate WHERE Short_Name = 'MORE Power'"
+# Execute the query
+cursor.execute(query_214)
+# Fetch the result
+result_214 = cursor.fetchone()
+
+query_215 = "SELECT Oct_24 FROM generation_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_215)
+# Fetch the result
+result_215 = cursor.fetchone()
+
+query_216 = "SELECT Oct_24 FROM generation_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_216)
+# Fetch the result
+result_216 = cursor.fetchone()
+
+query_217 = """
+SELECT Short_Name, Oct_24
+FROM residential_rate
+WHERE Oct_24_Ranking BETWEEN 1 AND 5
+ORDER BY Oct_24_Ranking ASC;
+"""
+cursor.execute(query_217)
+result_217 = cursor.fetchall()
+
+query_218 = """
+SELECT Short_Name, Oct_24
+FROM residential_rate
+WHERE Oct_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Oct_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_218)
+result_218 = cursor.fetchall()
+
+query_219 = """
+SELECT Short_Name, Oct_24
+FROM generation_rate
+WHERE Oct_24_Ranking BETWEEN 1 AND 5
+ORDER BY Oct_24_Ranking ASC;
+"""
+cursor.execute(query_219)
+result_219 = cursor.fetchall()
+
+query_220 = """
+SELECT Short_Name, Oct_24
+FROM generation_rate
+WHERE Oct_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Oct_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_220)
+result_220 = cursor.fetchall()
+
+# November 2024
+query_221 = "SELECT Nov_24 FROM residential_rate WHERE Short_Name = 'MORE Power'"
+# Execute the query
+cursor.execute(query_221)
+# Fetch the result
+result_221 = cursor.fetchone()
+
+query_222 = "SELECT Nov_24 FROM residential_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_222)
+# Fetch the result
+result_222 = cursor.fetchone()
+
+query_223 = "SELECT Nov_24 FROM residential_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_223)
+# Fetch the result
+result_223 = cursor.fetchone()
+
+query_224 = "SELECT Nov_24 FROM generation_rate WHERE Short_Name = 'MORE Power'"
+# Execute the query
+cursor.execute(query_224)
+# Fetch the result
+result_224 = cursor.fetchone()
+
+query_225 = "SELECT Nov_24 FROM generation_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_225)
+# Fetch the result
+result_225 = cursor.fetchone()
+
+query_226 = "SELECT Nov_24 FROM generation_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_226)
+# Fetch the result
+result_226 = cursor.fetchone()
+
+query_227 = """
+SELECT Short_Name, Nov_24
+FROM residential_rate
+WHERE Nov_24_Ranking BETWEEN 1 AND 5
+ORDER BY Nov_24_Ranking ASC;
+"""
+cursor.execute(query_227)
+result_227 = cursor.fetchall()
+
+query_228 = """
+SELECT Short_Name, Nov_24
+FROM residential_rate
+WHERE Nov_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Nov_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_228)
+result_228 = cursor.fetchall()
+
+query_229 = """
+SELECT Short_Name, Nov_24
+FROM generation_rate
+WHERE Nov_24_Ranking BETWEEN 1 AND 5
+ORDER BY Nov_24_Ranking ASC;
+"""
+cursor.execute(query_229)
+result_229 = cursor.fetchall()
+
+query_230 = """
+SELECT Short_Name, Nov_24
+FROM generation_rate
+WHERE Nov_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Nov_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_230)
+result_230 = cursor.fetchall()
 
 if month_selected == 'January 2023':
     # 1st Table
@@ -2829,7 +2974,7 @@ elif month_selected == 'August 2024':
         df_5 = pd.DataFrame(table_5)
         st.dataframe(df_5, hide_index=True)
 
-else:
+elif month_selected == 'September 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     table_1 = {
@@ -2886,6 +3031,130 @@ else:
         table_5 = {
             "DU": [row[0] for row in result_210], # Extract Short_Name
             "Generation Rate": [row[1] for row in result_210] # Extract Residential Rate
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(df_5, hide_index=True)
+
+elif month_selected == 'October 2024':
+    # 1st Table
+    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [result_211[0], result_212[0], result_213[0]],
+        "Generation Rate": [result_214[0], result_215[0], result_216[0]]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(df, hide_index=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        table_2 = {
+            "DU": [row[0] for row in result_217], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_217] # Extract Residential Rate
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(df_2, hide_index=True)
+
+    # 3rd Table
+    with col2:
+        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        table_3 = {
+            "DU": [row[0] for row in result_218], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_218] # Extract Residential Rate
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(df_3, hide_index=True)
+
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        table_4 = {
+            "DU": [row[0] for row in result_219], # Extract Short_Name
+            "Generation Rate": [row[1] for row in result_219] # Extract Residential Rate
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(df_4, hide_index=True)
+
+    # 5th Table
+    with col4:
+        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        table_5 = {
+            "DU": [row[0] for row in result_220], # Extract Short_Name
+            "Generation Rate": [row[1] for row in result_220] # Extract Residential Rate
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(df_5, hide_index=True)
+
+else:
+    # 1st Table
+    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [result_221[0], result_222[0], result_223[0]],
+        "Generation Rate": [result_224[0], result_225[0], result_226[0]]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(df, hide_index=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        table_2 = {
+            "DU": [row[0] for row in result_227], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_227] # Extract Residential Rate
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(df_2, hide_index=True)
+
+    # 3rd Table
+    with col2:
+        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        table_3 = {
+            "DU": [row[0] for row in result_228], # Extract Short_Name
+            "Residential Rate": [row[1] for row in result_228] # Extract Residential Rate
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(df_3, hide_index=True)
+
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        table_4 = {
+            "DU": [row[0] for row in result_229], # Extract Short_Name
+            "Generation Rate": [row[1] for row in result_229] # Extract Residential Rate
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(df_4, hide_index=True)
+
+    # 5th Table
+    with col4:
+        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        table_5 = {
+            "DU": [row[0] for row in result_230], # Extract Short_Name
+            "Generation Rate": [row[1] for row in result_230] # Extract Residential Rate
         }
 
         df_5 = pd.DataFrame(table_5)
