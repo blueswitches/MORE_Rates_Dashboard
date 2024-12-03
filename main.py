@@ -3103,7 +3103,7 @@ else:
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
-        "Residential Rate": [result_221[0], result_222[0], result_223[0]],
+        "Residential Rate": [11.8092, result_222[0], result_223[0]],
         "Generation Rate": [result_224[0], result_225[0], result_226[0]]
     }
 
