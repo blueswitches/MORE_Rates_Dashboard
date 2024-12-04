@@ -3,8 +3,6 @@ import mysql.connector
 import pandas as pd
 import streamlit as st
 
-@st.cache_data
-
 # Set up the Streamlit page configuration with a wide layout and custom page title
 st.set_page_config(layout="wide", page_title='Rates Database')
 
@@ -3340,7 +3338,7 @@ elif month_selected == 'October 2024':
         table_4 = {
             "DU": [row[0] for row in result_219], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_219] # Extract Residential Rate
-            "Generation Rate": [f"{float(row[1]):.4f}" for row in 219]
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_219]
         }
 
         df_4 = pd.DataFrame(table_4)
@@ -3352,7 +3350,7 @@ elif month_selected == 'October 2024':
         table_5 = {
             "DU": [row[0] for row in result_220], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_220] # Extract Residential Rate
-            "Generation Rate": [f"{float(row[1]):.4f}" for row in 220]
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_220]
         }
 
         df_5 = pd.DataFrame(table_5)
