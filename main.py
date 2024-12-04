@@ -3441,7 +3441,7 @@ else:
         table_5 = {
             "DU": [row[0] for row in result_230], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_230] # Extract Residential Rate
-            "Generation Rate": [f"{float(row[1]):.4f}" for row in 230]
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_230]
         }
 
         df_5 = pd.DataFrame(table_5)
