@@ -3361,27 +3361,27 @@ else:
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     try:
         nov_2024_result_221 = "{:.4f}".format(result_221)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_221 = ""
     try:
         nov_2024_result_222 = "{:.4f}".format(result_222)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_222 = ""
     try:
         nov_2024_result_223 = "{:.4f}".format(result_223)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_223 = ""
     try:
         nov_2024_result_224 = "{:.4f}".format(result_224)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_224 = ""
     try:
         nov_2024_result_225 = "{:.4f}".format(result_225)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_225 = ""
     try:
         nov_2024_result_226 = "{:.4f}".format(result_226)
-    except:
+    except (TypeError, ValueError):
         nov_2024_result_226 = ""
 
     table_1 = {
