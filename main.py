@@ -3358,14 +3358,21 @@ elif month_selected == 'October 2024':
 
 else:
     # 1st Table
-    
+
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    nov_2024_result_221 = "{:.4f}".format(result_221)
-    nov_2024_result_222 = "{:.4f}".format(result_222)
-    nov_2024_result_223 = "{:.4f}".format(result_223)
-    nov_2024_result_224 = "{:.4f}".format(result_224)
-    nov_2024_result_225 = "{:.4f}".format(result_225)
-    nov_2024_result_226 = "{:.4f}".format(result_226)
+    # nov_2024_result_221 = "{:.4f}".format(result_221)
+    # nov_2024_result_222 = "{:.4f}".format(result_222)
+    # nov_2024_result_223 = "{:.4f}".format(result_223)
+    # nov_2024_result_224 = "{:.4f}".format(result_224)
+    # nov_2024_result_225 = "{:.4f}".format(result_225)
+    # nov_2024_result_226 = "{:.4f}".format(result_226)
+
+    nov_2024_result_221 = "{:.4f}".format(result_221) if result_221 is not None else "N/A"
+    nov_2024_result_222 = "{:.4f}".format(result_222) if result_222 is not None else "N/A"
+    nov_2024_result_223 = "{:.4f}".format(result_223) if result_223 is not None else "N/A"
+    nov_2024_result_224 = "{:.4f}".format(result_224) if result_224 is not None else "N/A"
+    nov_2024_result_225 = "{:.4f}".format(result_225) if result_225 is not None else "N/A"
+    nov_2024_result_226 = "{:.4f}".format(result_226) if result_226 is not None else "N/A"
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
