@@ -3,6 +3,8 @@ import mysql.connector
 import pandas as pd
 import streamlit as st
 
+@st.cache_data
+
 # Set up the Streamlit page configuration with a wide layout and custom page title
 st.set_page_config(layout="wide", page_title='Rates Database')
 
@@ -3358,7 +3360,7 @@ elif month_selected == 'October 2024':
 
 else:
     # 1st Table
-
+    
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     # nov_2024_result_221 = "{:.4f}".format(result_221)
     # nov_2024_result_222 = "{:.4f}".format(result_222)
