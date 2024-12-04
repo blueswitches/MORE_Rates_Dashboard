@@ -3359,13 +3359,30 @@ elif month_selected == 'October 2024':
 else:
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
-    nov_2024_result_221 = "{:.4f}".format(result_221)
-    nov_2024_result_222 = "{:.4f}".format(result_222)
-    nov_2024_result_223 = "{:.4f}".format(result_223)
-    nov_2024_result_224 = "{:.4f}".format(result_224)
-    nov_2024_result_225 = "{:.4f}".format(result_225)
-    nov_2024_result_226 = "{:.4f}".format(result_226)
+    try:
+        nov_2024_result_221 = "{:.4f}".format(result_221)
+    except:
+        nov_2024_result_221 = ""
+    try:
+        nov_2024_result_222 = "{:.4f}".format(result_222)
+    except:
+        nov_2024_result_222 = ""
+    try:
+        nov_2024_result_223 = "{:.4f}".format(result_223)
+    except:
+        nov_2024_result_223 = ""
+    try:
+        nov_2024_result_224 = "{:.4f}".format(result_224)
+    except:
+        nov_2024_result_224 = ""
+    try:
+        nov_2024_result_225 = "{:.4f}".format(result_225)
+    except:
+        nov_2024_result_225 = ""
+    try:
+        nov_2024_result_226 = "{:.4f}".format(result_226)
+    except:
+        nov_2024_result_226 = ""
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -3412,7 +3429,7 @@ else:
         table_4 = {
             "DU": [row[0] for row in result_229], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_229] # Extract Residential Rate
-            "Generation Rate": [f"{float(row[1]):.4f}" for row in 229]
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_229]
         }
 
         df_4 = pd.DataFrame(table_4)
