@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 
 # Set up the Streamlit page configuration with a wide layout and custom page title
-st.set_page_config(layout="wide", page_title='Rates Database')
+st.set_page_config(layout="wide", page_title='Rates Dashboard', page_icon='more_power_logo.png')
 
 # Inject CSS to hide header, footer, and menu
 hide_st_style = """
