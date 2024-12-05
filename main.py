@@ -1740,12 +1740,38 @@ result_230 = cursor.fetchall()
 if month_selected == 'January 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    jan_2023_result_1 = "{:.4f}".format(result_1)
-    jan_2023_result_2 = "{:.4f}".format(result_2)
-    jan_2023_result_3 = "{:.4f}".format(result_3)
-    jan_2023_result_4 = "{:.4f}".format(result_4)
-    jan_2023_result_5 = "{:.4f}".format(result_5)
-    jan_2023_result_6 = "{:.4f}".format(result_6)
+    # jan_2023_result_1 = "{:.4f}".format(result_1)
+    # jan_2023_result_2 = "{:.4f}".format(result_2)
+    # jan_2023_result_3 = "{:.4f}".format(result_3)
+    # jan_2023_result_4 = "{:.4f}".format(result_4)
+    # jan_2023_result_5 = "{:.4f}".format(result_5)
+    # jan_2023_result_6 = "{:.4f}".format(result_6)
+
+    if result_1 and result_1[0] is not None:
+        jan_2023_result_1 = "{:.4f}".format(float(result_1[0]))
+    else:
+        jan_2023_result_1 = None
+    if result_2 and result_2[0] is not None:
+        jan_2023_result_2 = "{:.4f}".format(float(result_2[0]))
+    else:
+        jan_2023_result_2 = None
+    if result_3 and result_3[0] is not None:
+        jan_2023_result_3 = "{:.4f}".format(float(result_3[0]))
+    else:
+        jan_2023_result_3 = None
+    if result_4 and result_4[0] is not None:
+        jan_2023_result_4 = "{:.4f}".format(float(result_4[0]))
+    else:
+        jan_2023_result_4 = None
+    if result_5 and result_5[0] is not None:
+        jan_2023_result_5 = "{:.4f}".format(float(result_5[0]))
+    else:
+        jan_2023_result_5 = None
+    if result_6 and result_6[0] is not None:
+        jan_2023_result_6 = "{:.4f}".format(float(result_6[0]))
+    else:
+        jan_2023_result_6 = None
+
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -1815,12 +1841,38 @@ if month_selected == 'January 2023':
 elif month_selected == 'February 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    feb_2023_result_11 = "{:.4f}".format(result_11)
-    feb_2023_result_12 = "{:.4f}".format(result_12)
-    feb_2023_result_13 = "{:.4f}".format(result_13)
-    feb_2023_result_14 = "{:.4f}".format(result_14)
-    feb_2023_result_15 = "{:.4f}".format(result_15)
-    feb_2023_result_16 = "{:.4f}".format(result_16)
+    # feb_2023_result_11 = "{:.4f}".format(result_11)
+    # feb_2023_result_12 = "{:.4f}".format(result_12)
+    # feb_2023_result_13 = "{:.4f}".format(result_13)
+    # feb_2023_result_14 = "{:.4f}".format(result_14)
+    # feb_2023_result_15 = "{:.4f}".format(result_15)
+    # feb_2023_result_16 = "{:.4f}".format(result_16)
+
+    if result_11 and result_11[0] is not None:
+        feb_2023_result_11 = "{:.4f}".format(float(result_11[0]))
+    else:
+        feb_2023_result_11 = None
+    if result_12 and result_12[0] is not None:
+        feb_2023_result_12 = "{:.4f}".format(float(result_12[0]))
+    else:
+        feb_2023_result_12 = None
+    if result_13 and result_13[0] is not None:
+         feb_2023_result_13 = "{:.4f}".format(float(result_13[0]))
+    else:
+        feb_2023_result_13 = None
+    if result_14 and result_14[0] is not None:
+         feb_2023_result_14 = "{:.4f}".format(float(result_14[0]))
+    else:
+        feb_2023_result_14 = None
+    if result_15 and result_15[0] is not None:
+         feb_2023_result_15 = "{:.4f}".format(float(result_15[0]))
+    else:
+        feb_2023_result_15 = None
+    if result_16 and result_16[0] is not None:
+         feb_2023_result_16 = "{:.4f}".format(float(result_16[0]))
+    else:
+        feb_2023_result_16 = None
+
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
         "Residential Rate": [feb_2023_result_11, feb_2023_result_12, feb_2023_result_13], 
@@ -1887,12 +1939,37 @@ elif month_selected == 'February 2023':
 elif month_selected == 'March 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    mar_2023_result_21 = "{:.4f}".format(result_21)
-    mar_2023_result_22 = "{:.4f}".format(result_22)
-    mar_2023_result_23 = "{:.4f}".format(result_23)
-    mar_2023_result_24 = "{:.4f}".format(result_24)
-    mar_2023_result_25 = "{:.4f}".format(result_25)
-    mar_2023_result_26 = "{:.4f}".format(result_26)
+    # mar_2023_result_21 = "{:.4f}".format(result_21)
+    # mar_2023_result_22 = "{:.4f}".format(result_22)
+    # mar_2023_result_23 = "{:.4f}".format(result_23)
+    # mar_2023_result_24 = "{:.4f}".format(result_24)
+    # mar_2023_result_25 = "{:.4f}".format(result_25)
+    # mar_2023_result_26 = "{:.4f}".format(result_26)
+
+    if result_21 and result_21[0] is not None:
+        mar_2023_result_21 = "{:.4f}".format(float(result_21[0]))
+    else:
+        mar_2023_result_21 = None
+    if result_22 and result_22[0] is not None:
+        mar_2023_result_22 = "{:.4f}".format(float(result_22[0]))
+    else:
+        mar_2023_result_22 = None
+    if result_23 and result_23[0] is not None:
+         mar_2023_result_23 = "{:.4f}".format(float(result_23[0]))
+    else:
+        mar_2023_result_23 = None
+    if result_24 and result_24[0] is not None:
+         mar_2023_result_24 = "{:.4f}".format(float(result_24[0]))
+    else:
+        mar_2023_result_24 = None
+    if result_25 and result_25[0] is not None:
+         mar_2023_result_25 = "{:.4f}".format(float(result_25[0]))
+    else:
+        mar_2023_result_25 = None
+    if result_26 and result_26[0] is not None:
+         mar_2023_result_26 = "{:.4f}".format(float(result_26[0]))
+    else:
+        mar_2023_result_26 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -1960,12 +2037,38 @@ elif month_selected == 'March 2023':
 elif month_selected == 'April 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    apr_2023_result_31 = "{:.4f}".format(result_31)
-    apr_2023_result_32 = "{:.4f}".format(result_32)
-    apr_2023_result_33 = "{:.4f}".format(result_33)
-    apr_2023_result_34 = "{:.4f}".format(result_34)
-    apr_2023_result_35 = "{:.4f}".format(result_35)
-    apr_2023_result_36 = "{:.4f}".format(result_36)
+    # apr_2023_result_31 = "{:.4f}".format(result_31)
+    # apr_2023_result_32 = "{:.4f}".format(result_32)
+    # apr_2023_result_33 = "{:.4f}".format(result_33)
+    # apr_2023_result_34 = "{:.4f}".format(result_34)
+    # apr_2023_result_35 = "{:.4f}".format(result_35)
+    # apr_2023_result_36 = "{:.4f}".format(result_36)
+
+    if result_31 and result_31[0] is not None:
+        apr_2023_result_31 = "{:.4f}".format(float(result_31[0]))
+    else:
+        apr_2023_result_31 = None
+    if result_32 and result_32[0] is not None:
+        apr_2023_result_32 = "{:.4f}".format(float(result_32[0]))
+    else:
+        apr_2023_result_32 = None
+    if result_33 and result_33[0] is not None:
+         apr_2023_result_33 = "{:.4f}".format(float(result_33[0]))
+    else:
+        apr_2023_result_33 = None
+    if result_34 and result_34[0] is not None:
+         apr_2023_result_34 = "{:.4f}".format(float(result_34[0]))
+    else:
+        apr_2023_result_34 = None
+    if result_35 and result_35[0] is not None:
+         apr_2023_result_35 = "{:.4f}".format(float(result_35[0]))
+    else:
+        apr_2023_result_35 = None
+    if result_36 and result_36[0] is not None:
+         apr_2023_result_36 = "{:.4f}".format(float(result_36[0]))
+    else:
+        apr_2023_result_36 = None
+
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
         "Residential Rate": [apr_2023_result_31, apr_2023_result_32, apr_2023_result_33],
@@ -2032,12 +2135,37 @@ elif month_selected == 'April 2023':
 elif month_selected == 'May 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    may_2023_result_41 = "{:.4f}".format(result_41)
-    may_2023_result_42 = "{:.4f}".format(result_42)
-    may_2023_result_43 = "{:.4f}".format(result_43)
-    may_2023_result_44 = "{:.4f}".format(result_44)
-    may_2023_result_45 = "{:.4f}".format(result_45)
-    may_2023_result_46 = "{:.4f}".format(result_46)
+    # may_2023_result_41 = "{:.4f}".format(result_41)
+    # may_2023_result_42 = "{:.4f}".format(result_42)
+    # may_2023_result_43 = "{:.4f}".format(result_43)
+    # may_2023_result_44 = "{:.4f}".format(result_44)
+    # may_2023_result_45 = "{:.4f}".format(result_45)
+    # may_2023_result_46 = "{:.4f}".format(result_46)
+
+    if result_41 and result_41[0] is not None:
+        may_2023_result_41 = "{:.4f}".format(float(result_41[0]))
+    else:
+        may_2023_result_41 = None
+    if result_42 and result_42[0] is not None:
+        may_2023_result_42 = "{:.4f}".format(float(result_42[0]))
+    else:
+        may_2023_result_42 = None
+    if result_43 and result_43[0] is not None:
+         may_2023_result_43 = "{:.4f}".format(float(result_43[0]))
+    else:
+        may_2023_result_43 = None
+    if result_44 and result_44[0] is not None:
+         may_2023_result_44 = "{:.4f}".format(float(result_44[0]))
+    else:
+        may_2023_result_44 = None
+    if result_45 and result_45[0] is not None:
+         may_2023_result_45 = "{:.4f}".format(float(result_45[0]))
+    else:
+        may_2023_result_45 = None
+    if result_46 and result_46[0] is not None:
+         may_2023_result_46 = "{:.4f}".format(float(result_46[0]))
+    else:
+        may_2023_result_46 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2105,12 +2233,37 @@ elif month_selected == 'May 2023':
 elif month_selected == 'June 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    jun_2023_result_51 = "{:.4f}".format(result_51)
-    jun_2023_result_52 = "{:.4f}".format(result_52)
-    jun_2023_result_53 = "{:.4f}".format(result_53)
-    jun_2023_result_54 = "{:.4f}".format(result_54)
-    jun_2023_result_55 = "{:.4f}".format(result_55)
-    jun_2023_result_56 = "{:.4f}".format(result_56)
+    # jun_2023_result_51 = "{:.4f}".format(result_51)
+    # jun_2023_result_52 = "{:.4f}".format(result_52)
+    # jun_2023_result_53 = "{:.4f}".format(result_53)
+    # jun_2023_result_54 = "{:.4f}".format(result_54)
+    # jun_2023_result_55 = "{:.4f}".format(result_55)
+    # jun_2023_result_56 = "{:.4f}".format(result_56)
+
+    if result_51 and result_51[0] is not None:
+        jun_2023_result_51 = "{:.4f}".format(float(result_51[0]))
+    else:
+        jun_2023_result_51 = None
+    if result_52 and result_52[0] is not None:
+        jun_2023_result_52 = "{:.4f}".format(float(result_52[0]))
+    else:
+        jun_2023_result_52 = None
+    if result_53 and result_53[0] is not None:
+         jun_2023_result_53 = "{:.4f}".format(float(result_53[0]))
+    else:
+        jun_2023_result_53 = None
+    if result_54 and result_54[0] is not None:
+         jun_2023_result_54 = "{:.4f}".format(float(result_54[0]))
+    else:
+        jun_2023_result_54 = None
+    if result_55 and result_55[0] is not None:
+         jun_2023_result_55 = "{:.4f}".format(float(result_55[0]))
+    else:
+        jun_2023_result_55 = None
+    if result_56 and result_56[0] is not None:
+         jun_2023_result_56 = "{:.4f}".format(float(result_56[0]))
+    else:
+        jun_2023_result_56 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2178,12 +2331,38 @@ elif month_selected == 'June 2023':
 elif month_selected == 'July 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    jul_2023_result_61 = "{:.4f}".format(result_61)
-    jul_2023_result_62 = "{:.4f}".format(result_62)
-    jul_2023_result_63 = "{:.4f}".format(result_63)
-    jul_2023_result_64 = "{:.4f}".format(result_64)
-    jul_2023_result_65 = "{:.4f}".format(result_65)
-    jul_2023_result_66 = "{:.4f}".format(result_66)
+    # jul_2023_result_61 = "{:.4f}".format(result_61)
+    # jul_2023_result_62 = "{:.4f}".format(result_62)
+    # jul_2023_result_63 = "{:.4f}".format(result_63)
+    # jul_2023_result_64 = "{:.4f}".format(result_64)
+    # jul_2023_result_65 = "{:.4f}".format(result_65)
+    # jul_2023_result_66 = "{:.4f}".format(result_66)
+    
+    if result_61 and result_61[0] is not None:
+        jul_2023_result_61 = "{:.4f}".format(float(result_61[0]))
+    else:
+        jul_2023_result_61 = None
+    if result_62 and result_62[0] is not None:
+        jul_2023_result_62 = "{:.4f}".format(float(result_62[0]))
+    else:
+        jul_2023_result_62 = None
+    if result_63 and result_63[0] is not None:
+         jul_2023_result_63 = "{:.4f}".format(float(result_63[0]))
+    else:
+        jul_2023_result_63 = None
+    if result_64 and result_64[0] is not None:
+         jul_2023_result_64 = "{:.4f}".format(float(result_64[0]))
+    else:
+        jul_2023_result_64 = None
+    if result_65 and result_65[0] is not None:
+         jul_2023_result_65 = "{:.4f}".format(float(result_65[0]))
+    else:
+        jul_2023_result_65 = None
+    if result_66 and result_66[0] is not None:
+         jul_2023_result_66 = "{:.4f}".format(float(result_66[0]))
+    else:
+        jul_2023_result_66 = None
+    
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
         "Residential Rate": [jul_2023_result_61, jul_2023_result_62, jul_2023_result_63],
@@ -2251,12 +2430,37 @@ elif month_selected == 'August 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    aug_2023_result_71 = "{:.4f}".format(result_71)
-    aug_2023_result_72 = "{:.4f}".format(result_72)
-    aug_2023_result_73 = "{:.4f}".format(result_73)
-    aug_2023_result_74 = "{:.4f}".format(result_74)
-    aug_2023_result_75 = "{:.4f}".format(result_75)
-    aug_2023_result_76 = "{:.4f}".format(result_76)
+    # aug_2023_result_71 = "{:.4f}".format(result_71)
+    # aug_2023_result_72 = "{:.4f}".format(result_72)
+    # aug_2023_result_73 = "{:.4f}".format(result_73)
+    # aug_2023_result_74 = "{:.4f}".format(result_74)
+    # aug_2023_result_75 = "{:.4f}".format(result_75)
+    # aug_2023_result_76 = "{:.4f}".format(result_76)
+
+    if result_71 and result_71[0] is not None:
+         aug_2023_result_71 = "{:.4f}".format(float(result_71[0]))
+    else:
+        aug_2023_result_71 = None
+    if result_72 and result_72[0] is not None:
+        aug_2023_result_72 = "{:.4f}".format(float(result_72[0]))
+    else:
+        aug_2023_result_72 = None
+    if result_73 and result_73[0] is not None:
+         aug_2023_result_73 = "{:.4f}".format(float(result_73[0]))
+    else:
+        aug_2023_result_73 = None
+    if result_74 and result_74[0] is not None:
+         aug_2023_result_74 = "{:.4f}".format(float(result_74[0]))
+    else:
+        aug_2023_result_74 = None
+    if result_75 and result_75[0] is not None:
+         aug_2023_result_75 = "{:.4f}".format(float(result_75[0]))
+    else:
+        aug_2023_result_75 = None
+    if result_76 and result_76[0] is not None:
+         aug_2023_result_76 = "{:.4f}".format(float(result_76[0]))
+    else:
+        aug_2023_result_76 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2325,12 +2529,37 @@ elif month_selected == 'September 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    sep_2023_result_81 = "{:.4f}".format(result_81)
-    sep_2023_result_82 = "{:.4f}".format(result_82)
-    sep_2023_result_83 = "{:.4f}".format(result_83)
-    sep_2023_result_84 = "{:.4f}".format(result_84)
-    sep_2023_result_85 = "{:.4f}".format(result_85)
-    sep_2023_result_86 = "{:.4f}".format(result_86)
+    # sep_2023_result_81 = "{:.4f}".format(result_81)
+    # sep_2023_result_82 = "{:.4f}".format(result_82)
+    # sep_2023_result_83 = "{:.4f}".format(result_83)
+    # sep_2023_result_84 = "{:.4f}".format(result_84)
+    # sep_2023_result_85 = "{:.4f}".format(result_85)
+    # sep_2023_result_86 = "{:.4f}".format(result_86)
+
+    if result_81 and result_81[0] is not None:
+         sep_2023_result_81 = "{:.4f}".format(float(result_81[0]))
+    else:
+        sep_2023_result_81 = None
+    if result_82 and result_82[0] is not None:
+        sep_2023_result_82 = "{:.4f}".format(float(result_82[0]))
+    else:
+        sep_2023_result_82 = None
+    if result_83 and result_83[0] is not None:
+         sep_2023_result_83 = "{:.4f}".format(float(result_83[0]))
+    else:
+        sep_2023_result_83 = None
+    if result_84 and result_84[0] is not None:
+         sep_2023_result_84 = "{:.4f}".format(float(result_84[0]))
+    else:
+        sep_2023_result_84 = None
+    if result_85 and result_85[0] is not None:
+         sep_2023_result_85 = "{:.4f}".format(float(result_85[0]))
+    else:
+        sep_2023_result_85 = None
+    if result_86 and result_86[0] is not None:
+         sep_2023_result_86 = "{:.4f}".format(float(result_86[0]))
+    else:
+        sep_2023_result_86 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2399,12 +2628,37 @@ elif month_selected == 'October 2023':
         # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    oct_2023_result_91 = "{:.4f}".format(result_91)
-    oct_2023_result_92 = "{:.4f}".format(result_92)
-    oct_2023_result_93 = "{:.4f}".format(result_93)
-    oct_2023_result_94 = "{:.4f}".format(result_94)
-    oct_2023_result_95 = "{:.4f}".format(result_95)
-    oct_2023_result_96 = "{:.4f}".format(result_96)
+    # oct_2023_result_91 = "{:.4f}".format(result_91)
+    # oct_2023_result_92 = "{:.4f}".format(result_92)
+    # oct_2023_result_93 = "{:.4f}".format(result_93)
+    # oct_2023_result_94 = "{:.4f}".format(result_94)
+    # oct_2023_result_95 = "{:.4f}".format(result_95)
+    # oct_2023_result_96 = "{:.4f}".format(result_96)
+
+    if result_91 and result_91[0] is not None:
+         oct_2023_result_91 = "{:.4f}".format(float(result_91[0]))
+    else:
+        oct_2023_result_91 = None
+    if result_92 and result_92[0] is not None:
+        oct_2023_result_92 = "{:.4f}".format(float(result_92[0]))
+    else:
+        oct_2023_result_92 = None
+    if result_93 and result_93[0] is not None:
+         oct_2023_result_93 = "{:.4f}".format(float(result_93[0]))
+    else:
+        oct_2023_result_93 = None
+    if result_94 and result_94[0] is not None:
+         oct_2023_result_94 = "{:.4f}".format(float(result_94[0]))
+    else:
+        oct_2023_result_94 = None
+    if result_95 and result_95[0] is not None:
+         oct_2023_result_95 = "{:.4f}".format(float(result_95[0]))
+    else:
+        oct_2023_result_95 = None
+    if result_96 and result_96[0] is not None:
+         oct_2023_result_96 = "{:.4f}".format(float(result_96[0]))
+    else:
+        oct_2023_result_96 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2473,12 +2727,37 @@ elif month_selected == 'November 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    nov_2023_result_101 = "{:.4f}".format(result_101)
-    nov_2023_result_102 = "{:.4f}".format(result_102)
-    nov_2023_result_103 = "{:.4f}".format(result_103)
-    nov_2023_result_104 = "{:.4f}".format(result_104)
-    nov_2023_result_105 = "{:.4f}".format(result_105)
-    nov_2023_result_106 = "{:.4f}".format(result_106)
+    # nov_2023_result_101 = "{:.4f}".format(result_101)
+    # nov_2023_result_102 = "{:.4f}".format(result_102)
+    # nov_2023_result_103 = "{:.4f}".format(result_103)
+    # nov_2023_result_104 = "{:.4f}".format(result_104)
+    # nov_2023_result_105 = "{:.4f}".format(result_105)
+    # nov_2023_result_106 = "{:.4f}".format(result_106)
+
+    if result_101 and result_101[0] is not None:
+         nov_2023_result_101 = "{:.4f}".format(float(result_101[0]))
+    else:
+        dec_2023_result_111 = None
+    if result_102 and result_102[0] is not None:
+        nov_2023_result_102 = "{:.4f}".format(float(result_102[0]))
+    else:
+        nov_2023_result_102 = None
+    if result_103 and result_103[0] is not None:
+         nov_2023_result_103 = "{:.4f}".format(float(result_103[0]))
+    else:
+        nov_2023_result_103 = None
+    if result_104 and result_104[0] is not None:
+         nov_2023_result_104 = "{:.4f}".format(float(result_104[0]))
+    else:
+        nov_2023_result_104 = None
+    if result_105 and result_105[0] is not None:
+         nov_2023_result_105 = "{:.4f}".format(float(result_105[0]))
+    else:
+        nov_2023_result_105 = None
+    if result_106 and result_106[0] is not None:
+         nov_2023_result_106 = "{:.4f}".format(float(result_106[0]))
+    else:
+        nov_2023_result_106 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2547,12 +2826,37 @@ elif month_selected == 'December 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    dec_2023_result_111 = "{:.4f}".format(result_111)
-    dec_2023_result_112 = "{:.4f}".format(result_112)
-    dec_2023_result_113 = "{:.4f}".format(result_113)
-    dec_2023_result_114 = "{:.4f}".format(result_114)
-    dec_2023_result_115 = "{:.4f}".format(result_115)
-    dec_2023_result_116 = "{:.4f}".format(result_116)
+    # dec_2023_result_111 = "{:.4f}".format(result_111)
+    # dec_2023_result_112 = "{:.4f}".format(result_112)
+    # dec_2023_result_113 = "{:.4f}".format(result_113)
+    # dec_2023_result_114 = "{:.4f}".format(result_114)
+    # dec_2023_result_115 = "{:.4f}".format(result_115)
+    # dec_2023_result_116 = "{:.4f}".format(result_116)
+
+    if result_111 and result_111[0] is not None:
+         dec_2023_result_111 = "{:.4f}".format(float(result_111[0]))
+    else:
+        dec_2023_result_111 = None
+    if result_112 and result_112[0] is not None:
+        dec_2023_result_112 = "{:.4f}".format(float(result_112[0]))
+    else:
+        dec_2023_result_112 = None
+    if result_113 and result_113[0] is not None:
+         dec_2023_result_113 = "{:.4f}".format(float(result_113[0]))
+    else:
+        dec_2023_result_113 = None
+    if result_114 and result_114[0] is not None:
+         dec_2023_result_114 = "{:.4f}".format(float(result_114[0]))
+    else:
+        dec_2023_result_114 = None
+    if result_115 and result_115[0] is not None:
+         dec_2023_result_115 = "{:.4f}".format(float(result_115[0]))
+    else:
+        dec_2023_result_115 = None
+    if result_116 and result_116[0] is not None:
+         dec_2023_result_116 = "{:.4f}".format(float(result_116[0]))
+    else:
+        dec_2023_result_116 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2619,12 +2923,37 @@ elif month_selected == 'January 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    jan_2024_result_121 = "{:.4f}".format(result_121)
-    jan_2024_result_122 = "{:.4f}".format(result_122)
-    jan_2024_result_123 = "{:.4f}".format(result_123)
-    jan_2024_result_124 = "{:.4f}".format(result_124)
-    jan_2024_result_125 = "{:.4f}".format(result_125)
-    jan_2024_result_126 = "{:.4f}".format(result_126)
+    # jan_2024_result_121 = "{:.4f}".format(result_121)
+    # jan_2024_result_122 = "{:.4f}".format(result_122)
+    # jan_2024_result_123 = "{:.4f}".format(result_123)
+    # jan_2024_result_124 = "{:.4f}".format(result_124)
+    # jan_2024_result_125 = "{:.4f}".format(result_125)
+    # jan_2024_result_126 = "{:.4f}".format(result_126)
+
+    if result_121 and result_121[0] is not None:
+         jan_2024_result_121 = "{:.4f}".format(float(result_121[0]))
+    else:
+        jan_2024_result_121 = None
+    if result_122 and result_122[0] is not None:
+        jan_2024_result_122 = "{:.4f}".format(float(result_122[0]))
+    else:
+        jan_2024_result_122 = None
+    if result_123 and result_123[0] is not None:
+         jan_2024_result_123 = "{:.4f}".format(float(result_123[0]))
+    else:
+        jan_2024_result_123 = None
+    if result_124 and result_124[0] is not None:
+         jan_2024_result_124 = "{:.4f}".format(float(result_124[0]))
+    else:
+        jan_2024_result_124 = None
+    if result_125 and result_125[0] is not None:
+         jan_2024_result_125 = "{:.4f}".format(float(result_125[0]))
+    else:
+        jan_2024_result_125 = None
+    if result_126 and result_126[0] is not None:
+         jan_2024_result_126 = "{:.4f}".format(float(result_126[0]))
+    else:
+        jan_2024_result_126 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2693,12 +3022,37 @@ elif month_selected == 'February 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    feb_2024_result_131 = "{:.4f}".format(result_131)
-    feb_2024_result_132 = "{:.4f}".format(result_132)
-    feb_2024_result_133 = "{:.4f}".format(result_133)
-    feb_2024_result_134 = "{:.4f}".format(result_134)
-    feb_2024_result_135 = "{:.4f}".format(result_135)
-    feb_2024_result_136 = "{:.4f}".format(result_136)
+    # feb_2024_result_131 = "{:.4f}".format(result_131)
+    # feb_2024_result_132 = "{:.4f}".format(result_132)
+    # feb_2024_result_133 = "{:.4f}".format(result_133)
+    # feb_2024_result_134 = "{:.4f}".format(result_134)
+    # feb_2024_result_135 = "{:.4f}".format(result_135)
+    # feb_2024_result_136 = "{:.4f}".format(result_136)
+
+    if result_131 and result_131[0] is not None:
+         feb_2024_result_131 = "{:.4f}".format(float(result_131[0]))
+    else:
+        feb_2024_result_131 = None
+    if result_132 and result_132[0] is not None:
+        feb_2024_result_132 = "{:.4f}".format(float(result_132[0]))
+    else:
+        feb_2024_result_132 = None
+    if result_133 and result_133[0] is not None:
+         feb_2024_result_133 = "{:.4f}".format(float(result_133[0]))
+    else:
+        feb_2024_result_133 = None
+    if result_134 and result_134[0] is not None:
+         feb_2024_result_134 = "{:.4f}".format(float(result_134[0]))
+    else:
+        feb_2024_result_134 = None
+    if result_135 and result_135[0] is not None:
+         feb_2024_result_135 = "{:.4f}".format(float(result_135[0]))
+    else:
+        feb_2024_result_135 = None
+    if result_136 and result_136[0] is not None:
+         feb_2024_result_136 = "{:.4f}".format(float(result_136[0]))
+    else:
+        feb_2024_result_136 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2767,12 +3121,37 @@ elif month_selected == 'March 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    mar_2024_result_141 = "{:.4f}".format(result_141)
-    mar_2024_result_142 = "{:.4f}".format(result_142)
-    mar_2024_result_143 = "{:.4f}".format(result_143)
-    mar_2024_result_144 = "{:.4f}".format(result_144)
-    mar_2024_result_145 = "{:.4f}".format(result_145)
-    mar_2024_result_146 = "{:.4f}".format(result_146)
+    # mar_2024_result_141 = "{:.4f}".format(result_141)
+    # mar_2024_result_142 = "{:.4f}".format(result_142)
+    # mar_2024_result_143 = "{:.4f}".format(result_143)
+    # mar_2024_result_144 = "{:.4f}".format(result_144)
+    # mar_2024_result_145 = "{:.4f}".format(result_145)
+    # mar_2024_result_146 = "{:.4f}".format(result_146)
+
+    if result_141 and result_141[0] is not None:
+         mar_2024_result_141 = "{:.4f}".format(float(result_141[0]))
+    else:
+        mar_2024_result_141 = None
+    if result_142 and result_142[0] is not None:
+        mar_2024_result_142 = "{:.4f}".format(float(result_142[0]))
+    else:
+        mar_2024_result_142 = None
+    if result_143 and result_143[0] is not None:
+         mar_2024_result_143 = "{:.4f}".format(float(result_143[0]))
+    else:
+        mar_2024_result_143 = None
+    if result_144 and result_144[0] is not None:
+         mar_2024_result_144 = "{:.4f}".format(float(result_144[0]))
+    else:
+        mar_2024_result_144 = None
+    if result_145 and result_145[0] is not None:
+         mar_2024_result_145 = "{:.4f}".format(float(result_145[0]))
+    else:
+        mar_2024_result_145 = None
+    if result_146 and result_146[0] is not None:
+         mar_2024_result_146 = "{:.4f}".format(float(result_146[0]))
+    else:
+        mar_2024_result_146 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2841,12 +3220,37 @@ elif month_selected == 'April 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    apr_2024_result_151 = "{:.4f}".format(result_151)
-    apr_2024_result_152 = "{:.4f}".format(result_152)
-    apr_2024_result_153 = "{:.4f}".format(result_153)
-    apr_2024_result_154 = "{:.4f}".format(result_154)
-    apr_2024_result_155 = "{:.4f}".format(result_155)
-    apr_2024_result_156 = "{:.4f}".format(result_156)
+    # apr_2024_result_151 = "{:.4f}".format(result_151)
+    # apr_2024_result_152 = "{:.4f}".format(result_152)
+    # apr_2024_result_153 = "{:.4f}".format(result_153)
+    # apr_2024_result_154 = "{:.4f}".format(result_154)
+    # apr_2024_result_155 = "{:.4f}".format(result_155)
+    # apr_2024_result_156 = "{:.4f}".format(result_156)
+
+    if result_151 and result_151[0] is not None:
+         apr_2024_result_151 = "{:.4f}".format(float(result_151[0]))
+    else:
+        may_2024_result_161 = None
+    if result_152 and result_152[0] is not None:
+        apr_2024_result_152 = "{:.4f}".format(float(result_152[0]))
+    else:
+        apr_2024_result_152 = None
+    if result_153 and result_153[0] is not None:
+         apr_2024_result_153 = "{:.4f}".format(float(result_153[0]))
+    else:
+        apr_2024_result_153 = None
+    if result_154 and result_154[0] is not None:
+         apr_2024_result_154 = "{:.4f}".format(float(result_154[0]))
+    else:
+        apr_2024_result_154 = None
+    if result_155 and result_155[0] is not None:
+         apr_2024_result_155 = "{:.4f}".format(float(result_155[0]))
+    else:
+        apr_2024_result_155 = None
+    if result_156 and result_156[0] is not None:
+         apr_2024_result_156 = "{:.4f}".format(float(result_156[0]))
+    else:
+        apr_2024_result_156 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2915,12 +3319,38 @@ elif month_selected == 'May 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    may_2024_result_161 = "{:.4f}".format(result_161)
-    may_2024_result_162 = "{:.4f}".format(result_162)
-    may_2024_result_163 = "{:.4f}".format(result_163)
-    may_2024_result_164 = "{:.4f}".format(result_164)
-    may_2024_result_165 = "{:.4f}".format(result_165)
-    may_2024_result_166 = "{:.4f}".format(result_166)
+    # may_2024_result_161 = "{:.4f}".format(result_161)
+    # may_2024_result_162 = "{:.4f}".format(result_162)
+    # may_2024_result_163 = "{:.4f}".format(result_163)
+    # may_2024_result_164 = "{:.4f}".format(result_164)
+    # may_2024_result_165 = "{:.4f}".format(result_165)
+    # may_2024_result_166 = "{:.4f}".format(result_166)
+
+    if result_161 and result_161[0] is not None:
+         may_2024_result_161 = "{:.4f}".format(float(result_161[0]))
+    else:
+        may_2024_result_161 = None
+    if result_162 and result_162[0] is not None:
+        may_2024_result_162 = "{:.4f}".format(float(result_162[0]))
+    else:
+        may_2024_result_162 = None
+    if result_163 and result_163[0] is not None:
+         may_2024_result_163 = "{:.4f}".format(float(result_163[0]))
+    else:
+        may_2024_result_163 = None
+    if result_164 and result_164[0] is not None:
+         may_2024_result_164 = "{:.4f}".format(float(result_164[0]))
+    else:
+        may_2024_result_164 = None
+    if result_165 and result_165[0] is not None:
+         may_2024_result_165 = "{:.4f}".format(float(result_165[0]))
+    else:
+        may_2024_result_165 = None
+    if result_166 and result_166[0] is not None:
+         may_2024_result_166 = "{:.4f}".format(float(result_166[0]))
+    else:
+        may_2024_result_166 = None
+
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -2989,12 +3419,37 @@ elif month_selected == 'June 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    jun_2024_result_171 = "{:.4f}".format(result_171)
-    jun_2024_result_172 = "{:.4f}".format(result_172)
-    jun_2024_result_173 = "{:.4f}".format(result_173)
-    jun_2024_result_174 = "{:.4f}".format(result_174)
-    jun_2024_result_175 = "{:.4f}".format(result_175)
-    jun_2024_result_176 = "{:.4f}".format(result_176)
+    # jun_2024_result_171 = "{:.4f}".format(result_171)
+    # jun_2024_result_172 = "{:.4f}".format(result_172)
+    # jun_2024_result_173 = "{:.4f}".format(result_173)
+    # jun_2024_result_174 = "{:.4f}".format(result_174)
+    # jun_2024_result_175 = "{:.4f}".format(result_175)
+    # jun_2024_result_176 = "{:.4f}".format(result_176)
+
+    if result_171 and result_171[0] is not None:
+         jun_2024_result_171 = "{:.4f}".format(float(result_171[0]))
+    else:
+        jun_2024_result_171 = None
+    if result_172 and result_172[0] is not None:
+        jun_2024_result_172 = "{:.4f}".format(float(result_172[0]))
+    else:
+        jun_2024_result_172 = None
+    if result_173 and result_173[0] is not None:
+         jun_2024_result_173 = "{:.4f}".format(float(result_173[0]))
+    else:
+        jun_2024_result_173 = None
+    if result_174 and result_174[0] is not None:
+         jun_2024_result_174 = "{:.4f}".format(float(result_174[0]))
+    else:
+        jun_2024_result_174 = None
+    if result_175 and result_175[0] is not None:
+         jun_2024_result_175 = "{:.4f}".format(float(result_175[0]))
+    else:
+        jun_2024_result_175 = None
+    if result_176 and result_176[0] is not None:
+         jun_2024_result_176 = "{:.4f}".format(float(result_176[0]))
+    else:
+        jun_2024_result_176 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -3063,12 +3518,37 @@ elif month_selected == 'July 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    jul_2024_result_181 = "{:.4f}".format(result_181)
-    jul_2024_result_182 = "{:.4f}".format(result_182)
-    jul_2024_result_183 = "{:.4f}".format(result_183)
-    jul_2024_result_184 = "{:.4f}".format(result_184)
-    jul_2024_result_185 = "{:.4f}".format(result_185)
-    jul_2024_result_186 = "{:.4f}".format(result_186)
+    # jul_2024_result_181 = "{:.4f}".format(result_181)
+    # jul_2024_result_182 = "{:.4f}".format(result_182)
+    # jul_2024_result_183 = "{:.4f}".format(result_183)
+    # jul_2024_result_184 = "{:.4f}".format(result_184)
+    # jul_2024_result_185 = "{:.4f}".format(result_185)
+    # jul_2024_result_186 = "{:.4f}".format(result_186)
+
+    if result_181 and result_181[0] is not None:
+         jul_2024_result_181 = "{:.4f}".format(float(result_181[0]))
+    else:
+        jul_2024_result_181 = None
+    if result_182 and result_182[0] is not None:
+         jul_2024_result_182 = "{:.4f}".format(float(result_182[0]))
+    else:
+        jul_2024_result_182 = None
+    if result_183 and result_183[0] is not None:
+         jul_2024_result_183 = "{:.4f}".format(float(result_183[0]))
+    else:
+        jul_2024_result_183 = None
+    if result_184 and result_184[0] is not None:
+         jul_2024_result_184 = "{:.4f}".format(float(result_184[0]))
+    else:
+        jul_2024_result_184 = None
+    if result_185 and result_185[0] is not None:
+         jul_2024_result_185 = "{:.4f}".format(float(result_185[0]))
+    else:
+        jul_2024_result_185 = None
+    if result_186 and result_186[0] is not None:
+         jul_2024_result_186 = "{:.4f}".format(float(result_186[0]))
+    else:
+        jul_2024_result_186 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -3137,12 +3617,37 @@ elif month_selected == 'August 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    aug_2024_result_191 = "{:.4f}".format(result_191)
-    aug_2024_result_192 = "{:.4f}".format(result_192)
-    aug_2024_result_193 = "{:.4f}".format(result_193)
-    aug_2024_result_194 = "{:.4f}".format(result_194)
-    aug_2024_result_195 = "{:.4f}".format(result_195)
-    aug_2024_result_196 = "{:.4f}".format(result_196)
+    # aug_2024_result_191 = "{:.4f}".format(result_191)
+    # aug_2024_result_192 = "{:.4f}".format(result_192)
+    # aug_2024_result_193 = "{:.4f}".format(result_193)
+    # aug_2024_result_194 = "{:.4f}".format(result_194)
+    # aug_2024_result_195 = "{:.4f}".format(result_195)
+    # aug_2024_result_196 = "{:.4f}".format(result_196)
+
+    if result_191 and result_191[0] is not None:
+         aug_2024_result_191 = "{:.4f}".format(float(result_191[0]))
+    else:
+        aug_2024_result_191 = None
+    if result_192 and result_192[0] is not None:
+         aug_2024_result_192 = "{:.4f}".format(float(result_192[0]))
+    else:
+        aug_2024_result_192 = None
+    if result_193 and result_193[0] is not None:
+         aug_2024_result_193 = "{:.4f}".format(float(result_193[0]))
+    else:
+        aug_2024_result_193 = None
+    if result_194 and result_194[0] is not None:
+         aug_2024_result_194 = "{:.4f}".format(float(result_194[0]))
+    else:
+        aug_2024_result_194 = None
+    if result_195 and result_195[0] is not None:
+         aug_2024_result_195 = "{:.4f}".format(float(result_195[0]))
+    else:
+        aug_2024_result_195 = None
+    if result_196 and result_196[0] is not None:
+         aug_2024_result_196 = "{:.4f}".format(float(result_196[0]))
+    else:
+        aug_2024_result_196 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -3211,12 +3716,37 @@ elif month_selected == 'September 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    sep_2024_result_201 = "{:.4f}".format(result_201)
-    sep_2024_result_202 = "{:.4f}".format(result_202)
-    sep_2024_result_203 = "{:.4f}".format(result_203)
-    sep_2024_result_204 = "{:.4f}".format(result_204)
-    sep_2024_result_205 = "{:.4f}".format(result_205)
-    sep_2024_result_206 = "{:.4f}".format(result_206)
+    # sep_2024_result_201 = "{:.4f}".format(result_201)
+    # sep_2024_result_202 = "{:.4f}".format(result_202)
+    # sep_2024_result_203 = "{:.4f}".format(result_203)
+    # sep_2024_result_204 = "{:.4f}".format(result_204)
+    # sep_2024_result_205 = "{:.4f}".format(result_205)
+    # sep_2024_result_206 = "{:.4f}".format(result_206)
+
+    if result_201 and result_201[0] is not None:
+         sep_2024_result_201 = "{:.4f}".format(float(result_201[0]))
+    else:
+        sep_2024_result_201 = None
+    if result_202 and result_202[0] is not None:
+         sep_2024_result_202 = "{:.4f}".format(float(result_202[0]))
+    else:
+        sep_2024_result_202 = None
+    if result_203 and result_203[0] is not None:
+         sep_2024_result_203 = "{:.4f}".format(float(result_203[0]))
+    else:
+        sep_2024_result_203 = None
+    if result_204 and result_204[0] is not None:
+         sep_2024_result_204 = "{:.4f}".format(float(result_204[0]))
+    else:
+        sep_2024_result_204 = None
+    if result_205 and result_205[0] is not None:
+         sep_2024_result_205 = "{:.4f}".format(float(result_205[0]))
+    else:
+        sep_2024_result_205 = None
+    if result_206 and result_206[0] is not None:
+         sep_2024_result_206 = "{:.4f}".format(float(result_206[0]))
+    else:
+        sep_2024_result_206 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
@@ -3285,12 +3815,37 @@ elif month_selected == 'October 2024':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
 
-    oct_2024_result_211 = "{:.4f}".format(result_211)
-    oct_2024_result_212 = "{:.4f}".format(result_212)
-    oct_2024_result_213 = "{:.4f}".format(result_213)
-    oct_2024_result_214 = "{:.4f}".format(result_214)
-    oct_2024_result_215 = "{:.4f}".format(result_215)
-    oct_2024_result_216 = "{:.4f}".format(result_216)
+    # oct_2024_result_211 = "{:.4f}".format(result_211)
+    # oct_2024_result_212 = "{:.4f}".format(result_212)
+    # oct_2024_result_213 = "{:.4f}".format(result_213)
+    # oct_2024_result_214 = "{:.4f}".format(result_214)
+    # oct_2024_result_215 = "{:.4f}".format(result_215)
+    # oct_2024_result_216 = "{:.4f}".format(result_216)
+
+    if result_211 and result_211[0] is not None:
+         oct_2024_result_211 = "{:.4f}".format(float(result_211[0]))
+    else:
+        oct_2024_result_211 = None
+    if result_212 and result_212[0] is not None:
+         oct_2024_result_212 = "{:.4f}".format(float(result_212[0]))
+    else:
+        oct_2024_result_212 = None
+    if result_213 and result_213[0] is not None:
+         oct_2024_result_213 = "{:.4f}".format(float(result_213[0]))
+    else:
+        oct_2024_result_213 = None
+    if result_214 and result_214[0] is not None:
+         oct_2024_result_214 = "{:.4f}".format(float(result_214[0]))
+    else:
+        oct_2024_result_214 = None
+    if result_215 and result_215[0] is not None:
+         oct_2024_result_215 = "{:.4f}".format(float(result_215[0]))
+    else:
+        oct_2024_result_215 = None
+    if result_216 and result_216[0] is not None:
+         oct_2024_result_216 = "{:.4f}".format(float(result_216[0]))
+    else:
+        oct_2024_result_216 = None
 
 
     table_1 = {
@@ -3358,21 +3913,31 @@ elif month_selected == 'October 2024':
 
 else:
     # 1st Table
-    
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    # nov_2024_result_221 = "{:.4f}".format(result_221)
-    # nov_2024_result_222 = "{:.4f}".format(result_222)
-    # nov_2024_result_223 = "{:.4f}".format(result_223)
-    # nov_2024_result_224 = "{:.4f}".format(result_224)
-    # nov_2024_result_225 = "{:.4f}".format(result_225)
-    # nov_2024_result_226 = "{:.4f}".format(result_226)
-
-    nov_2024_result_221 = "{:.4f}".format(result_221) if result_221 is not None else "N/A"
-    nov_2024_result_222 = "{:.4f}".format(result_222) if result_222 is not None else "N/A"
-    nov_2024_result_223 = "{:.4f}".format(result_223) if result_223 is not None else "N/A"
-    nov_2024_result_224 = "{:.4f}".format(result_224) if result_224 is not None else "N/A"
-    nov_2024_result_225 = "{:.4f}".format(result_225) if result_225 is not None else "N/A"
-    nov_2024_result_226 = "{:.4f}".format(result_226) if result_226 is not None else "N/A"
+    if result_221 and result_221[0] is not None:
+         nov_2024_result_221 = "{:.4f}".format(float(result_221[0]))
+    else:
+        nov_2024_result_221 = None
+    if result_222 and result_222[0] is not None:
+         nov_2024_result_222 = "{:.4f}".format(float(result_222[0]))
+    else:
+        nov_2024_result_222 = None
+    if result_223 and result_223[0] is not None:
+         nov_2024_result_223 = "{:.4f}".format(float(result_223[0]))
+    else:
+        nov_2024_result_223 = None
+    if result_224 and result_224[0] is not None:
+         nov_2024_result_224 = "{:.4f}".format(float(result_224[0]))
+    else:
+        nov_2024_result_224 = None
+    if result_225 and result_225[0] is not None:
+         nov_2024_result_225 = "{:.4f}".format(float(result_225[0]))
+    else:
+        nov_2024_result_225 = None
+    if result_226 and result_226[0] is not None:
+         nov_2024_result_226 = "{:.4f}".format(float(result_226[0]))
+    else:
+        nov_2024_result_226 = None
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
