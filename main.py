@@ -3354,8 +3354,8 @@ elif month_selected == 'May 2024':
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
-        "Residential Rate": [result_161[0], result_162[0], result_163[0]],
-        "Generation Rate": [result_164[0], result_165[0], result_166[0]]
+        "Residential Rate": [may_2024_result_161, may_2024_result_162, may_2024_result_163],
+        "Generation Rate": [may_2024_result_164, may_2024_result_165, may_2024_result_166]
     }
 
     df = pd.DataFrame(table_1)
