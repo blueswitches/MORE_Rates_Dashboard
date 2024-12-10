@@ -4,7 +4,8 @@ import pandas as pd
 import streamlit as st
 
 # Set up the Streamlit page configuration with a wide layout and custom page title
-st.set_page_config(layout="wide", page_title='Rates Dashboard', page_icon='more_power_logo.png')
+# st.set_page_config(layout="wide", page_title='Rates Dashboard', page_icon='more_power_logo.png')
+st.set_page_config(page_title='Rates Dashboard', page_icon='more_power_logo.png')
 
 # Inject CSS to hide header, footer, and menu
 hide_st_style = """
@@ -1737,6 +1738,42 @@ ORDER BY Nov_24_Ranking_Vis ASC;
 cursor.execute(query_230)
 result_230 = cursor.fetchall()
 
+# Styling for first dataframe
+def style_dataframe1(df):
+    styled_df = df.style
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=[""]
+    )
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["Residential Rate"]
+    )
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["Generation Rate"]
+    )
+    return styled_df
+
+# Styling for second and third dataframe
+def style_dataframe2(df):
+    styled_df = df.style
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["DU"]
+    )
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["Residential Rate"]
+    )
+    return styled_df
+
+# Styling for fourth and fifth dataframe
+def style_dataframe3(df):
+    styled_df = df.style
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["DU"]
+    )
+    styled_df = styled_df.applymap(
+        lambda x: "background-color: #8FBC8F; color: black;", subset=["Generation Rate"]
+    )
+    return styled_df   
+
 if month_selected == 'January 2023':
     # 1st Table
     st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
@@ -1772,7 +1809,6 @@ if month_selected == 'January 2023':
     else:
         jan_2023_result_6 = None
 
-
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
         # "Residential Rate": [result_1[0], result_2[0], result_3[0]], 
@@ -1782,7 +1818,10 @@ if month_selected == 'January 2023':
     }
 
     df_1 = pd.DataFrame(table_1)
-    st.dataframe(df_1, hide_index=True)
+    # st.dataframe(df_1, hide_index=True)
+    # Display the DataFrame in Streamlit with styles
+
+    st.dataframe(style_dataframe1(df_1), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -1797,7 +1836,7 @@ if month_selected == 'January 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -1809,7 +1848,7 @@ if month_selected == 'January 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -1824,7 +1863,7 @@ if month_selected == 'January 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -1836,7 +1875,7 @@ if month_selected == 'January 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'February 2023':
     # 1st Table
@@ -1880,7 +1919,7 @@ elif month_selected == 'February 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -1895,7 +1934,7 @@ elif month_selected == 'February 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -1907,7 +1946,7 @@ elif month_selected == 'February 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
     
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -1922,7 +1961,7 @@ elif month_selected == 'February 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -1934,7 +1973,7 @@ elif month_selected == 'February 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'March 2023':
     # 1st Table
@@ -1978,7 +2017,7 @@ elif month_selected == 'March 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -1993,7 +2032,7 @@ elif month_selected == 'March 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2005,7 +2044,7 @@ elif month_selected == 'March 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2020,7 +2059,7 @@ elif month_selected == 'March 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2032,7 +2071,7 @@ elif month_selected == 'March 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'April 2023':
     # 1st Table
@@ -2076,7 +2115,7 @@ elif month_selected == 'April 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2091,7 +2130,7 @@ elif month_selected == 'April 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2103,7 +2142,7 @@ elif month_selected == 'April 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2118,7 +2157,7 @@ elif month_selected == 'April 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2130,7 +2169,7 @@ elif month_selected == 'April 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'May 2023':
     # 1st Table
@@ -2174,7 +2213,7 @@ elif month_selected == 'May 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2189,7 +2228,7 @@ elif month_selected == 'May 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2201,7 +2240,7 @@ elif month_selected == 'May 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2216,7 +2255,7 @@ elif month_selected == 'May 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2228,7 +2267,7 @@ elif month_selected == 'May 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'June 2023':
     # 1st Table
@@ -2272,7 +2311,7 @@ elif month_selected == 'June 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2287,7 +2326,7 @@ elif month_selected == 'June 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2299,7 +2338,7 @@ elif month_selected == 'June 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2314,7 +2353,7 @@ elif month_selected == 'June 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2326,7 +2365,7 @@ elif month_selected == 'June 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'July 2023':
     # 1st Table
@@ -2370,7 +2409,7 @@ elif month_selected == 'July 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2385,7 +2424,7 @@ elif month_selected == 'July 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2397,7 +2436,7 @@ elif month_selected == 'July 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2412,7 +2451,7 @@ elif month_selected == 'July 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2424,7 +2463,7 @@ elif month_selected == 'July 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'August 2023':
     # 1st Table
@@ -2469,7 +2508,7 @@ elif month_selected == 'August 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2484,7 +2523,7 @@ elif month_selected == 'August 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2496,7 +2535,7 @@ elif month_selected == 'August 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2511,7 +2550,7 @@ elif month_selected == 'August 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2523,7 +2562,7 @@ elif month_selected == 'August 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'September 2023':
     # 1st Table
@@ -2568,7 +2607,7 @@ elif month_selected == 'September 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2583,7 +2622,7 @@ elif month_selected == 'September 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2595,7 +2634,7 @@ elif month_selected == 'September 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2610,7 +2649,7 @@ elif month_selected == 'September 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2622,7 +2661,7 @@ elif month_selected == 'September 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'October 2023':
         # 1st Table
@@ -2667,7 +2706,7 @@ elif month_selected == 'October 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2682,7 +2721,7 @@ elif month_selected == 'October 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2694,7 +2733,7 @@ elif month_selected == 'October 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2709,7 +2748,7 @@ elif month_selected == 'October 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2721,7 +2760,7 @@ elif month_selected == 'October 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'November 2023':
     # 1st Table
@@ -2766,7 +2805,7 @@ elif month_selected == 'November 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2781,7 +2820,7 @@ elif month_selected == 'November 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2793,7 +2832,7 @@ elif month_selected == 'November 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2808,7 +2847,7 @@ elif month_selected == 'November 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2820,7 +2859,7 @@ elif month_selected == 'November 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'December 2023':
     # 1st Table
@@ -2865,7 +2904,7 @@ elif month_selected == 'December 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2879,7 +2918,7 @@ elif month_selected == 'December 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2890,7 +2929,7 @@ elif month_selected == 'December 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -2905,7 +2944,7 @@ elif month_selected == 'December 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -2917,7 +2956,7 @@ elif month_selected == 'December 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'January 2024':
     # 1st Table
@@ -2962,7 +3001,7 @@ elif month_selected == 'January 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -2977,7 +3016,7 @@ elif month_selected == 'January 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -2989,7 +3028,7 @@ elif month_selected == 'January 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3004,7 +3043,7 @@ elif month_selected == 'January 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3016,7 +3055,7 @@ elif month_selected == 'January 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'February 2024':
     # 1st Table
@@ -3061,7 +3100,7 @@ elif month_selected == 'February 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3076,7 +3115,7 @@ elif month_selected == 'February 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3088,7 +3127,7 @@ elif month_selected == 'February 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3103,7 +3142,7 @@ elif month_selected == 'February 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3115,7 +3154,7 @@ elif month_selected == 'February 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'March 2024':
     # 1st Table
@@ -3160,7 +3199,7 @@ elif month_selected == 'March 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3175,7 +3214,7 @@ elif month_selected == 'March 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3187,7 +3226,7 @@ elif month_selected == 'March 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3202,7 +3241,7 @@ elif month_selected == 'March 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3214,7 +3253,7 @@ elif month_selected == 'March 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'April 2024':
     # 1st Table
@@ -3259,7 +3298,7 @@ elif month_selected == 'April 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3274,7 +3313,7 @@ elif month_selected == 'April 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3286,7 +3325,7 @@ elif month_selected == 'April 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3301,7 +3340,7 @@ elif month_selected == 'April 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3313,7 +3352,7 @@ elif month_selected == 'April 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'May 2024':
     # 1st Table
@@ -3359,7 +3398,7 @@ elif month_selected == 'May 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3374,7 +3413,7 @@ elif month_selected == 'May 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3386,7 +3425,7 @@ elif month_selected == 'May 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3401,7 +3440,7 @@ elif month_selected == 'May 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3413,7 +3452,7 @@ elif month_selected == 'May 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'June 2024':
     # 1st Table
@@ -3458,7 +3497,7 @@ elif month_selected == 'June 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3473,7 +3512,7 @@ elif month_selected == 'June 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3485,7 +3524,7 @@ elif month_selected == 'June 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3500,7 +3539,7 @@ elif month_selected == 'June 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3512,7 +3551,7 @@ elif month_selected == 'June 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'July 2024':
     # 1st Table
@@ -3557,7 +3596,7 @@ elif month_selected == 'July 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3572,7 +3611,7 @@ elif month_selected == 'July 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3584,7 +3623,7 @@ elif month_selected == 'July 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3599,7 +3638,7 @@ elif month_selected == 'July 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3611,7 +3650,7 @@ elif month_selected == 'July 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'August 2024':
     # 1st Table
@@ -3656,7 +3695,7 @@ elif month_selected == 'August 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3671,7 +3710,7 @@ elif month_selected == 'August 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3683,7 +3722,7 @@ elif month_selected == 'August 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3698,7 +3737,7 @@ elif month_selected == 'August 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3710,7 +3749,7 @@ elif month_selected == 'August 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'September 2024':
     # 1st Table
@@ -3755,7 +3794,7 @@ elif month_selected == 'September 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3770,7 +3809,7 @@ elif month_selected == 'September 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3782,7 +3821,7 @@ elif month_selected == 'September 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3797,7 +3836,7 @@ elif month_selected == 'September 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3809,7 +3848,7 @@ elif month_selected == 'September 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 elif month_selected == 'October 2024':
     # 1st Table
@@ -3855,7 +3894,7 @@ elif month_selected == 'October 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3870,7 +3909,7 @@ elif month_selected == 'October 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3882,7 +3921,7 @@ elif month_selected == 'October 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3897,7 +3936,7 @@ elif month_selected == 'October 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -3909,7 +3948,7 @@ elif month_selected == 'October 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
 
 else:
     # 1st Table
@@ -3946,7 +3985,7 @@ else:
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(df, hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
@@ -3961,7 +4000,7 @@ else:
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(df_2, hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True)
 
     # 3rd Table
     with col2:
@@ -3973,7 +4012,7 @@ else:
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(df_3, hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
@@ -3988,7 +4027,7 @@ else:
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(df_4, hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True)
 
     # 5th Table
     with col4:
@@ -4000,4 +4039,4 @@ else:
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(df_5, hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True)
