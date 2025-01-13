@@ -1853,7 +1853,7 @@ if month_selected == 'January 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
 
@@ -2014,7 +2014,7 @@ elif month_selected == 'February 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # feb_2023_result_11 = "{:.4f}".format(result_11)
@@ -2174,7 +2174,7 @@ elif month_selected == 'March 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # mar_2023_result_21 = "{:.4f}".format(result_21)
@@ -2330,7 +2330,7 @@ elif month_selected == 'April 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # apr_2023_result_31 = "{:.4f}".format(result_31)
@@ -2487,7 +2487,7 @@ elif month_selected == 'May 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -2645,7 +2645,7 @@ elif month_selected == 'June 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # jun_2023_result_51 = "{:.4f}".format(result_51)
@@ -2802,7 +2802,7 @@ elif month_selected == 'July 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
 
@@ -2961,7 +2961,7 @@ elif month_selected == 'August 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
 
@@ -3121,7 +3121,7 @@ elif month_selected == 'September 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -3282,7 +3282,7 @@ elif month_selected == 'October 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -3442,7 +3442,7 @@ elif month_selected == 'November 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # nov_2023_result_101 = "{:.4f}".format(result_101)
@@ -3601,7 +3601,7 @@ elif month_selected == 'December 2023':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # dec_2023_result_111 = "{:.4f}".format(result_111)
@@ -3758,7 +3758,7 @@ elif month_selected == 'January 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -3918,7 +3918,7 @@ elif month_selected == 'February 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -4078,7 +4078,7 @@ elif month_selected == 'March 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -4238,7 +4238,7 @@ elif month_selected == 'April 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
 
@@ -4398,7 +4398,7 @@ elif month_selected == 'May 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
@@ -4559,7 +4559,7 @@ elif month_selected == 'June 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # jun_2024_result_171 = "{:.4f}".format(result_171)
@@ -4714,7 +4714,7 @@ elif month_selected == 'July 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
 
@@ -4870,7 +4870,7 @@ elif month_selected == 'August 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # aug_2024_result_191 = "{:.4f}".format(result_191)
@@ -5025,7 +5025,7 @@ elif month_selected == 'September 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # sep_2024_result_201 = "{:.4f}".format(result_201)
@@ -5180,7 +5180,7 @@ elif month_selected == 'October 2024':
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     # oct_2024_result_211 = "{:.4f}".format(result_211)
@@ -5338,7 +5338,7 @@ else:
         }
     </style>
     <div class="custom-markdown">
-        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
     </div>
 """, unsafe_allow_html=True)
     
