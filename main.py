@@ -2,10 +2,11 @@
 import mysql.connector
 import pandas as pd
 import streamlit as st
+from PIL import Image
 
 # Set up the Streamlit page configuration with a wide layout and custom page title
 # st.set_page_config(layout="wide", page_title='Rates Dashboard', page_icon='more_power_logo.png')
-st.set_page_config(page_title='Rates Dashboard', page_icon='more_power_logo.png')
+st.set_page_config(page_title='Rates Dashboard', page_icon='more_power_logo.png', layout="wide")
 
 # Inject CSS to hide header, footer, and menu
 hide_st_style = """
@@ -30,8 +31,70 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Create a selectbox widget for the user to choose a month and year for data filtering
-month_selected = st.selectbox(label='For the month of', options=['January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023', 'August 2023', 'September 2023', 'October 2023', 'November 2023', 'December 2023', 'January 2024', 'February 2024', 'March 2024', 'April 2024', 'May 2024', 'June 2024', 'July 2024', 'August 2024', 'September 2024', 'October 2024', 'November 2024'])
+st. markdown("""
+    <style>
+        .stApp {
+            background-color: #365E32;   
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+def add_logo_with_text(logo_path, text, max_width=None, max_height=None, text_size=16, font_family="Arial"):
+    """Adds a logo with text to the sidebar, maintaining aspect ratio.
+
+    Args:
+        logo_path (str): Path to the logo image.
+        text (str): Text to display below the logo.
+        max_width (int, optional): Maximum width of the logo. Defaults to None.
+        max_height (int, optional): Maximum height of the logo. Defaults to None.
+        text_size (int, optional): Font size for the text. Defaults to 16.
+        font_family (str, optional): Font family for the text. Defaults to "Arial".
+    """
+    try:
+        logo = Image.open(logo_path)
+        original_width, original_height = logo.size
+
+        if max_width and max_height:
+            width_ratio = max_width / original_width
+            height_ratio = max_height / original_height
+            scale_factor = min(width_ratio, height_ratio)
+            new_width = int(original_width * scale_factor)
+            new_height = int(original_height * scale_factor)
+            logo = logo.resize((new_width, new_height), Image.LANCZOS)
+        elif max_width:
+            new_height = int(original_height * (max_width / original_width))
+            logo = logo.resize((max_width, new_height), Image.LANCZOS)
+        elif max_height:
+            new_width = int(original_width * (max_height / original_height))
+            logo = logo.resize((new_width, max_height), Image.LANCZOS)
+
+        # Center the logo and text within the sidebar with a custom font
+        sidebar_content = f"""
+        <div style="text-align: center;">
+            <img src="data:image/png;base64,{get_base64_from_image(logo)}" style="max-width: 100%; max-height: {max_height if max_height else 'auto'}px;" />
+            <p style="font-size: {text_size}px; margin-top: 10px; font-family: {font_family};">{text}</p>
+        </div>
+        """
+
+        st.sidebar.markdown(sidebar_content, unsafe_allow_html=True)
+
+    except FileNotFoundError:
+        st.error(f"Logo not found at {logo_path}")
+    except Exception as e:
+        st.error(f"Error displaying logo or text: {e}")
+
+def get_base64_from_image(image):
+    """Converts image to base64 for embedding in HTML"""
+    import base64
+    from io import BytesIO
+
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    return base64.b64encode(buffered.getvalue()).decode()
+
+add_logo_with_text("more_power_logo.png", "Rates Dashboard", max_width=150, text_size=20, font_family="Helvetica")
+
+month_selected = st.sidebar.selectbox("For the month of", ["January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023", "September 2023", "October 2023", "November 2023", "December 2023", "January 2024", "February 2024", "March 2024", "April 2024", "May 2024", "June 2024", "July 2024", "August 2024", "September 2024", "October 2024", "November 2024"], index=0)
 
 # MySQL connection
 conn = mysql.connector.connect(
@@ -1742,13 +1805,13 @@ result_230 = cursor.fetchall()
 def style_dataframe1(df):
     styled_df = df.style
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=[""]
+        lambda x: "background-color: #81A263; color: black;", subset=[""]
     )
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["Residential Rate"]
+        lambda x: "background-color: #81A263; color: black;", subset=["Residential Rate"]
     )
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["Generation Rate"]
+        lambda x: "background-color: #81A263; color: black;", subset=["Generation Rate"]
     )
     return styled_df
 
@@ -1756,10 +1819,10 @@ def style_dataframe1(df):
 def style_dataframe2(df):
     styled_df = df.style
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["DU"]
+        lambda x: "background-color: #81A263; color: black;", subset=["DU"]
     )
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["Residential Rate"]
+        lambda x: "background-color: #81A263; color: black;", subset=["Residential Rate"]
     )
     return styled_df
 
@@ -1767,22 +1830,32 @@ def style_dataframe2(df):
 def style_dataframe3(df):
     styled_df = df.style
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["DU"]
+        lambda x: "background-color: #81A263; color: black;", subset=["DU"]
     )
     styled_df = styled_df.applymap(
-        lambda x: "background-color: #8FBC8F; color: black;", subset=["Generation Rate"]
+        lambda x: "background-color: #81A263; color: black;", subset=["Generation Rate"]
     )
     return styled_df   
 
 if month_selected == 'January 2023':
-    # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-    # jan_2023_result_1 = "{:.4f}".format(result_1)
-    # jan_2023_result_2 = "{:.4f}".format(result_2)
-    # jan_2023_result_3 = "{:.4f}".format(result_3)
-    # jan_2023_result_4 = "{:.4f}".format(result_4)
-    # jan_2023_result_5 = "{:.4f}".format(result_5)
-    # jan_2023_result_6 = "{:.4f}".format(result_6)
+    
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
 
     if result_1 and result_1[0] is not None:
         jan_2023_result_1 = "{:.4f}".format(float(result_1[0]))
@@ -1811,24 +1884,34 @@ if month_selected == 'January 2023':
 
     table_1 = {
         "": ["MORE", "NEPC", "BLCI"],
-        # "Residential Rate": [result_1[0], result_2[0], result_3[0]], 
-        # "Generation Rate": [result_4[0], result_5[0], result_6[0]]
         "Residential Rate": [jan_2023_result_1, jan_2023_result_2, jan_2023_result_3], 
         "Generation Rate": [jan_2023_result_4, jan_2023_result_5, jan_2023_result_6]
     }
 
+    # Create DataFrame
     df_1 = pd.DataFrame(table_1)
-    # st.dataframe(df_1, hide_index=True)
-    # Display the DataFrame in Streamlit with styles
 
-    st.dataframe(style_dataframe1(df_1), hide_index=True)
+    st.dataframe(style_dataframe1(df_1), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+
+
         table_2 = {
             "DU": [row[0] for row in result_7], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_7] # Extract Residential Rate
@@ -1836,11 +1919,24 @@ if month_selected == 'January 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_8], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_8] # Extract Residential Rate
@@ -1848,14 +1944,26 @@ if month_selected == 'January 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_9], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_9] # Extract Residential Rate
@@ -1863,11 +1971,23 @@ if month_selected == 'January 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+
         table_5 = {
             "DU": [row[0] for row in result_10], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_10] # Extract Residential Rate
@@ -1875,11 +1995,28 @@ if month_selected == 'January 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'February 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # feb_2023_result_11 = "{:.4f}".format(result_11)
     # feb_2023_result_12 = "{:.4f}".format(result_12)
     # feb_2023_result_13 = "{:.4f}".format(result_13)
@@ -1919,14 +2056,24 @@ elif month_selected == 'February 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_17], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_17] # Extract Residential Rate
@@ -1934,11 +2081,22 @@ elif month_selected == 'February 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_18], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_18] # Extract Residential Rate
@@ -1946,14 +2104,25 @@ elif month_selected == 'February 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
     
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_19], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_19] # Extract Residential Rate
@@ -1961,11 +2130,24 @@ elif month_selected == 'February 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_20], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_20] # Extract Residential Rate
@@ -1973,11 +2155,28 @@ elif month_selected == 'February 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'March 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # mar_2023_result_21 = "{:.4f}".format(result_21)
     # mar_2023_result_22 = "{:.4f}".format(result_22)
     # mar_2023_result_23 = "{:.4f}".format(result_23)
@@ -2017,14 +2216,24 @@ elif month_selected == 'March 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_27], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_27] # Extract Residential Rate
@@ -2032,11 +2241,21 @@ elif month_selected == 'March 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_28], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_28] # Extract Residential Rate
@@ -2044,14 +2263,24 @@ elif month_selected == 'March 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_29], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_29] # Extract Residential Rate
@@ -2059,11 +2288,22 @@ elif month_selected == 'March 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_30], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_30] # Extract Residential Rate
@@ -2071,11 +2311,28 @@ elif month_selected == 'March 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'April 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # apr_2023_result_31 = "{:.4f}".format(result_31)
     # apr_2023_result_32 = "{:.4f}".format(result_32)
     # apr_2023_result_33 = "{:.4f}".format(result_33)
@@ -2115,14 +2372,25 @@ elif month_selected == 'April 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+
         table_2 = {
             "DU": [row[0] for row in result_37], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_37] # Extract Residential Rate
@@ -2130,11 +2398,21 @@ elif month_selected == 'April 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_38], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_38] # Extract Residential Rate
@@ -2142,14 +2420,24 @@ elif month_selected == 'April 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_39], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_39] # Extract Residential Rate
@@ -2157,11 +2445,22 @@ elif month_selected == 'April 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_40], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_40] # Extract Residential Rate
@@ -2169,11 +2468,29 @@ elif month_selected == 'April 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'May 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # may_2023_result_41 = "{:.4f}".format(result_41)
     # may_2023_result_42 = "{:.4f}".format(result_42)
     # may_2023_result_43 = "{:.4f}".format(result_43)
@@ -2213,14 +2530,24 @@ elif month_selected == 'May 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_47], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_47] # Extract Residential Rate
@@ -2228,11 +2555,21 @@ elif month_selected == 'May 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_48], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_48] # Extract Residential Rate
@@ -2240,14 +2577,25 @@ elif month_selected == 'May 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_49], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_49] # Extract Residential Rate
@@ -2255,11 +2603,22 @@ elif month_selected == 'May 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+
         table_5 = {
             "DU": [row[0] for row in result_50], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_50] # Extract Residential Rate
@@ -2267,11 +2626,28 @@ elif month_selected == 'May 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'June 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # jun_2023_result_51 = "{:.4f}".format(result_51)
     # jun_2023_result_52 = "{:.4f}".format(result_52)
     # jun_2023_result_53 = "{:.4f}".format(result_53)
@@ -2311,14 +2687,26 @@ elif month_selected == 'June 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+
         table_2 = {
             "DU": [row[0] for row in result_57], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_57] # Extract Residential Rate
@@ -2326,11 +2714,21 @@ elif month_selected == 'June 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_58], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_58] # Extract Residential Rate
@@ -2338,14 +2736,24 @@ elif month_selected == 'June 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_59], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_59] # Extract Residential Rate
@@ -2353,11 +2761,21 @@ elif month_selected == 'June 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_5 = {
             "DU": [row[0] for row in result_60], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_60] # Extract Residential Rate
@@ -2365,11 +2783,29 @@ elif month_selected == 'June 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'July 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+
     # jul_2023_result_61 = "{:.4f}".format(result_61)
     # jul_2023_result_62 = "{:.4f}".format(result_62)
     # jul_2023_result_63 = "{:.4f}".format(result_63)
@@ -2409,14 +2845,25 @@ elif month_selected == 'July 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_67], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_67] # Extract Residential Rate
@@ -2424,11 +2871,21 @@ elif month_selected == 'July 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_68], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_68] # Extract Residential Rate
@@ -2436,14 +2893,25 @@ elif month_selected == 'July 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_69], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_69] # Extract Residential Rate
@@ -2451,11 +2919,22 @@ elif month_selected == 'July 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_70], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_70] # Extract Residential Rate
@@ -2463,11 +2942,28 @@ elif month_selected == 'July 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'August 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
 
     # aug_2023_result_71 = "{:.4f}".format(result_71)
     # aug_2023_result_72 = "{:.4f}".format(result_72)
@@ -2508,14 +3004,25 @@ elif month_selected == 'August 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_77], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_77] # Extract Residential Rate
@@ -2523,11 +3030,22 @@ elif month_selected == 'August 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_78], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_78] # Extract Residential Rate
@@ -2535,14 +3053,25 @@ elif month_selected == 'August 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_79], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_79] # Extract Residential Rate
@@ -2550,11 +3079,22 @@ elif month_selected == 'August 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_80], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_80] # Extract Residential Rate
@@ -2562,12 +3102,29 @@ elif month_selected == 'August 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'September 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # sep_2023_result_81 = "{:.4f}".format(result_81)
     # sep_2023_result_82 = "{:.4f}".format(result_82)
     # sep_2023_result_83 = "{:.4f}".format(result_83)
@@ -2607,14 +3164,25 @@ elif month_selected == 'September 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+
         table_2 = {
             "DU": [row[0] for row in result_87], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_87] # Extract Residential Rate
@@ -2622,11 +3190,22 @@ elif month_selected == 'September 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_88], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_88] # Extract Residential Rate
@@ -2634,14 +3213,26 @@ elif month_selected == 'September 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_89], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_89] # Extract Residential Rate
@@ -2649,11 +3240,22 @@ elif month_selected == 'September 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+
         table_5 = {
             "DU": [row[0] for row in result_90], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_90] # Extract Residential Rate
@@ -2661,12 +3263,29 @@ elif month_selected == 'September 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'October 2023':
         # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # oct_2023_result_91 = "{:.4f}".format(result_91)
     # oct_2023_result_92 = "{:.4f}".format(result_92)
     # oct_2023_result_93 = "{:.4f}".format(result_93)
@@ -2706,14 +3325,25 @@ elif month_selected == 'October 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_97], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_97] # Extract Residential Rate
@@ -2721,11 +3351,22 @@ elif month_selected == 'October 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_98], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_98] # Extract Residential Rate
@@ -2733,14 +3374,25 @@ elif month_selected == 'October 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_99], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_99] # Extract Residential Rate
@@ -2748,11 +3400,22 @@ elif month_selected == 'October 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_100], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_100] # Extract Residential Rate
@@ -2760,12 +3423,28 @@ elif month_selected == 'October 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'November 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # nov_2023_result_101 = "{:.4f}".format(result_101)
     # nov_2023_result_102 = "{:.4f}".format(result_102)
     # nov_2023_result_103 = "{:.4f}".format(result_103)
@@ -2805,14 +3484,25 @@ elif month_selected == 'November 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_107], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_107] # Extract Residential Rate
@@ -2820,11 +3510,22 @@ elif month_selected == 'November 2023':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_108], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_108] # Extract Residential Rate
@@ -2832,14 +3533,25 @@ elif month_selected == 'November 2023':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_109], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_109] # Extract Residential Rate
@@ -2847,11 +3559,22 @@ elif month_selected == 'November 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_110], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_110] # Extract Residential Rate
@@ -2859,12 +3582,28 @@ elif month_selected == 'November 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'December 2023':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # dec_2023_result_111 = "{:.4f}".format(result_111)
     # dec_2023_result_112 = "{:.4f}".format(result_112)
     # dec_2023_result_113 = "{:.4f}".format(result_113)
@@ -2904,39 +3643,72 @@ elif month_selected == 'December 2023':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_117], # Extract Short_Name
             "Residential Rate": [f"{float(row[1]):.4f}" for row in result_117]
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_118], # Extract Short_Name
             "Residential Rate": [f"{float(row[1]):.4f}" for row in result_118]
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_119], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_119] # Extract Residential Rate
@@ -2944,11 +3716,22 @@ elif month_selected == 'December 2023':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_120], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_120] # Extract Residential Rate
@@ -2956,12 +3739,29 @@ elif month_selected == 'December 2023':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'January 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # jan_2024_result_121 = "{:.4f}".format(result_121)
     # jan_2024_result_122 = "{:.4f}".format(result_122)
     # jan_2024_result_123 = "{:.4f}".format(result_123)
@@ -3001,14 +3801,25 @@ elif month_selected == 'January 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_127], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_127] # Extract Residential Rate
@@ -3016,11 +3827,22 @@ elif month_selected == 'January 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_128], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_128] # Extract Residential Rate
@@ -3028,14 +3850,25 @@ elif month_selected == 'January 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_129], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_129] # Extract Residential Rate
@@ -3043,11 +3876,22 @@ elif month_selected == 'January 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_130], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_130] # Extract Residential Rate
@@ -3055,12 +3899,29 @@ elif month_selected == 'January 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'February 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # feb_2024_result_131 = "{:.4f}".format(result_131)
     # feb_2024_result_132 = "{:.4f}".format(result_132)
     # feb_2024_result_133 = "{:.4f}".format(result_133)
@@ -3100,14 +3961,25 @@ elif month_selected == 'February 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_137], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_137] # Extract Residential Rate
@@ -3115,11 +3987,22 @@ elif month_selected == 'February 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_138], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_138] # Extract Residential Rate
@@ -3127,14 +4010,25 @@ elif month_selected == 'February 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_139], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_139] # Extract Residential Rate
@@ -3142,11 +4036,22 @@ elif month_selected == 'February 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_140], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_140] # Extract Residential Rate
@@ -3154,12 +4059,29 @@ elif month_selected == 'February 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'March 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # mar_2024_result_141 = "{:.4f}".format(result_141)
     # mar_2024_result_142 = "{:.4f}".format(result_142)
     # mar_2024_result_143 = "{:.4f}".format(result_143)
@@ -3199,14 +4121,25 @@ elif month_selected == 'March 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_147], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_147] # Extract Residential Rate
@@ -3214,11 +4147,22 @@ elif month_selected == 'March 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_148], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_148] # Extract Residential Rate
@@ -3226,14 +4170,25 @@ elif month_selected == 'March 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_149], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_149] # Extract Residential Rate
@@ -3241,11 +4196,22 @@ elif month_selected == 'March 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_150], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_150] # Extract Residential Rate
@@ -3253,11 +4219,28 @@ elif month_selected == 'March 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'April 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
 
     # apr_2024_result_151 = "{:.4f}".format(result_151)
     # apr_2024_result_152 = "{:.4f}".format(result_152)
@@ -3298,14 +4281,25 @@ elif month_selected == 'April 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_157], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_157] # Extract Residential Rate
@@ -3313,11 +4307,22 @@ elif month_selected == 'April 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_158], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_158] # Extract Residential Rate
@@ -3325,14 +4330,25 @@ elif month_selected == 'April 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_159], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_159] # Extract Residential Rate
@@ -3340,11 +4356,22 @@ elif month_selected == 'April 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_160], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_160] # Extract Residential Rate
@@ -3352,12 +4379,29 @@ elif month_selected == 'April 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'May 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     # may_2024_result_161 = "{:.4f}".format(result_161)
     # may_2024_result_162 = "{:.4f}".format(result_162)
     # may_2024_result_163 = "{:.4f}".format(result_163)
@@ -3398,14 +4442,25 @@ elif month_selected == 'May 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_167], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_167] # Extract Residential Rate
@@ -3413,11 +4468,22 @@ elif month_selected == 'May 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_168], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_168] # Extract Residential Rate
@@ -3425,14 +4491,25 @@ elif month_selected == 'May 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_4 = {
             "DU": [row[0] for row in result_169], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_169] # Extract Residential Rate
@@ -3440,11 +4517,22 @@ elif month_selected == 'May 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_170], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_170] # Extract Residential Rate
@@ -3452,12 +4540,28 @@ elif month_selected == 'May 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'June 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # jun_2024_result_171 = "{:.4f}".format(result_171)
     # jun_2024_result_172 = "{:.4f}".format(result_172)
     # jun_2024_result_173 = "{:.4f}".format(result_173)
@@ -3497,14 +4601,24 @@ elif month_selected == 'June 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_177], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_177] # Extract Residential Rate
@@ -3512,11 +4626,21 @@ elif month_selected == 'June 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_178], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_178] # Extract Residential Rate
@@ -3524,26 +4648,46 @@ elif month_selected == 'June 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_179], # Extract Short_Name
-            # "Generation Rate": [row[1] for row in result_179] # Extract Residential Rate
             "Generation Rate": [f"{float(row[1]):.4f}" for row in result_179]
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_180], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_180] # Extract Residential Rate
@@ -3551,11 +4695,28 @@ elif month_selected == 'June 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'July 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
 
     # jul_2024_result_181 = "{:.4f}".format(result_181)
     # jul_2024_result_182 = "{:.4f}".format(result_182)
@@ -3596,14 +4757,24 @@ elif month_selected == 'July 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_187], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_187] # Extract Residential Rate
@@ -3611,11 +4782,21 @@ elif month_selected == 'July 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_188], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_188] # Extract Residential Rate
@@ -3623,14 +4804,24 @@ elif month_selected == 'July 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_189], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_189] # Extract Residential Rate
@@ -3638,11 +4829,21 @@ elif month_selected == 'July 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_5 = {
             "DU": [row[0] for row in result_190], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_190] # Extract Residential Rate
@@ -3650,12 +4851,28 @@ elif month_selected == 'July 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'August 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # aug_2024_result_191 = "{:.4f}".format(result_191)
     # aug_2024_result_192 = "{:.4f}".format(result_192)
     # aug_2024_result_193 = "{:.4f}".format(result_193)
@@ -3695,14 +4912,24 @@ elif month_selected == 'August 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_197], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_197] # Extract Residential Rate
@@ -3710,11 +4937,21 @@ elif month_selected == 'August 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_198], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_198] # Extract Residential Rate
@@ -3722,14 +4959,24 @@ elif month_selected == 'August 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_199], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_199] # Extract Residential Rate
@@ -3737,11 +4984,21 @@ elif month_selected == 'August 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_5 = {
             "DU": [row[0] for row in result_200], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_200] # Extract Residential Rate
@@ -3749,12 +5006,28 @@ elif month_selected == 'August 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'September 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # sep_2024_result_201 = "{:.4f}".format(result_201)
     # sep_2024_result_202 = "{:.4f}".format(result_202)
     # sep_2024_result_203 = "{:.4f}".format(result_203)
@@ -3794,14 +5067,24 @@ elif month_selected == 'September 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_207], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_207] # Extract Residential Rate
@@ -3809,11 +5092,21 @@ elif month_selected == 'September 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_208], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_208] # Extract Residential Rate
@@ -3821,14 +5114,24 @@ elif month_selected == 'September 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_209], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_209] # Extract Residential Rate
@@ -3836,11 +5139,21 @@ elif month_selected == 'September 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_5 = {
             "DU": [row[0] for row in result_210], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_210] # Extract Residential Rate
@@ -3848,12 +5161,28 @@ elif month_selected == 'September 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 elif month_selected == 'October 2024':
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
-
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
     # oct_2024_result_211 = "{:.4f}".format(result_211)
     # oct_2024_result_212 = "{:.4f}".format(result_212)
     # oct_2024_result_213 = "{:.4f}".format(result_213)
@@ -3894,14 +5223,25 @@ elif month_selected == 'October 2024':
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        
         table_2 = {
             "DU": [row[0] for row in result_217], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_217] # Extract Residential Rate
@@ -3909,11 +5249,21 @@ elif month_selected == 'October 2024':
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
         table_3 = {
             "DU": [row[0] for row in result_218], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_218] # Extract Residential Rate
@@ -3921,14 +5271,24 @@ elif month_selected == 'October 2024':
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_219], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_219] # Extract Residential Rate
@@ -3936,11 +5296,22 @@ elif month_selected == 'October 2024':
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_220], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_220] # Extract Residential Rate
@@ -3948,11 +5319,29 @@ elif month_selected == 'October 2024':
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
 else:
     # 1st Table
-    st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+    
     if result_221 and result_221[0] is not None:
          nov_2024_result_221 = "{:.4f}".format(float(result_221[0]))
     else:
@@ -3985,14 +5374,24 @@ else:
     }
 
     df = pd.DataFrame(table_1)
-    st.dataframe(style_dataframe1(df), hide_index=True)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
 
     # Table 2 and Table 3 side-by-side
     col1, col2 = st.columns(2)
 
     # 2nd Table
     with col1:
-        st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_2 = {
             "DU": [row[0] for row in result_227], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_227] # Extract Residential Rate
@@ -4000,11 +5399,22 @@ else:
         }
 
         df_2 = pd.DataFrame(table_2)
-        st.dataframe(style_dataframe2(df_2), hide_index=True)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
 
     # 3rd Table
     with col2:
-        st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_3 = {
             "DU": [row[0] for row in result_228], # Extract Short_Name
             # "Residential Rate": [row[1] for row in result_228] # Extract Residential Rate
@@ -4012,14 +5422,24 @@ else:
         }
 
         df_3 = pd.DataFrame(table_3)
-        st.dataframe(style_dataframe2(df_3), hide_index=True)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
 
     # Table 4 and Table 5 side-by-side
     col3, col4 = st.columns(2)
 
     # 4th Table
     with col3:
-        st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
         table_4 = {
             "DU": [row[0] for row in result_229], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_229] # Extract Residential Rate
@@ -4027,11 +5447,22 @@ else:
         }
 
         df_4 = pd.DataFrame(table_4)
-        st.dataframe(style_dataframe3(df_4), hide_index=True)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
 
     # 5th Table
     with col4:
-        st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
         table_5 = {
             "DU": [row[0] for row in result_230], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_230] # Extract Residential Rate
@@ -4039,4 +5470,4 @@ else:
         }
 
         df_5 = pd.DataFrame(table_5)
-        st.dataframe(style_dataframe3(df_5), hide_index=True)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
