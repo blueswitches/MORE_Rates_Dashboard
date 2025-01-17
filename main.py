@@ -94,7 +94,7 @@ def get_base64_from_image(image):
 
 add_logo_with_text("more_power_logo.png", "Rates Dashboard", max_width=150, text_size=20, font_family="Helvetica")
 
-month_selected = st.sidebar.selectbox("For the month of", ["January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023", "September 2023", "October 2023", "November 2023", "December 2023", "January 2024", "February 2024", "March 2024", "April 2024", "May 2024", "June 2024", "July 2024", "August 2024", "September 2024", "October 2024", "November 2024"], index=0)
+month_selected = st.sidebar.selectbox("For the month of", ["January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023", "September 2023", "October 2023", "November 2023", "December 2023", "January 2024", "February 2024", "March 2024", "April 2024", "May 2024", "June 2024", "July 2024", "August 2024", "September 2024", "October 2024", "November 2024", "December 2024"], index=0)
 
 # MySQL connection
 conn = mysql.connector.connect(
