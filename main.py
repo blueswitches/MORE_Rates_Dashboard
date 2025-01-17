@@ -111,7 +111,7 @@ cursor = conn.cursor()
 # QUERIES
 
 # January 2023
-query_1 = "SELECT Jan_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_1 = "SELECT Jan_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_1)
 # Fetch the result
@@ -132,7 +132,7 @@ cursor.execute(query_3)
 result_3 = cursor.fetchone()
 
 # SQL query to retrieve the generation_rate value from Jan_23 where Short_Name is 'MORE Power'
-query_4 = "SELECT Jan_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_4 = "SELECT Jan_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_4)
 # Fetch the result
@@ -193,7 +193,7 @@ cursor.execute(query_10)
 result_10 = cursor.fetchall()
 
 # February 2023
-query_11 = "SELECT Feb_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_11 = "SELECT Feb_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_11)
 # Fetch the result
@@ -211,7 +211,7 @@ cursor.execute(query_13)
 # Fetch the result
 result_13 = cursor.fetchone()
 
-query_14 = "SELECT Feb_23 FROM gen_rate WHERE Short_Name = 'MORE POWER'"
+query_14 = "SELECT Feb_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_14)
 # Fetch the result
@@ -266,7 +266,7 @@ cursor.execute(query_20)
 result_20 = cursor.fetchall()
 
 # March 2023
-query_21 = "SELECT Mar_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_21 = "SELECT Mar_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_21)
 # Fetch the result
@@ -284,7 +284,7 @@ cursor.execute(query_23)
 # Fetch the result
 result_23 = cursor.fetchone()
 
-query_24 = "SELECT Mar_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_24 = "SELECT Mar_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_24)
 # Fetch the result
@@ -339,7 +339,7 @@ cursor.execute(query_30)
 result_30 = cursor.fetchall()
 
 # April 2023
-query_31 = "SELECT Apr_23 FROM res_rate WHERE Short_Name = 'MORE POWER'"
+query_31 = "SELECT Apr_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_31)
 # Fetch the result
@@ -357,7 +357,7 @@ cursor.execute(query_33)
 # Fetch the result
 result_33 = cursor.fetchone()
 
-query_34 = "SELECT Apr_23 FROM gen_rate WHERE Short_Name = 'MORE POWER'"
+query_34 = "SELECT Apr_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_34)
 # Fetch the result
@@ -412,7 +412,7 @@ cursor.execute(query_40)
 result_40 = cursor.fetchall()
 
 # May 2023
-query_41 = "SELECT May_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_41 = "SELECT May_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_41)
 # Fetch the result
@@ -430,7 +430,7 @@ cursor.execute(query_43)
 # Fetch the result
 result_43 = cursor.fetchone()
 
-query_44 = "SELECT May_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_44 = "SELECT May_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_44)
 # Fetch the result
@@ -485,7 +485,7 @@ cursor.execute(query_50)
 result_50 = cursor.fetchall()
 
 # June 2023
-query_51 = "SELECT Jun_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_51 = "SELECT Jun_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_51)
 # Fetch the result
@@ -503,7 +503,7 @@ cursor.execute(query_53)
 # Fetch the result
 result_53 = cursor.fetchone()
 
-query_54 = "SELECT Jun_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_54 = "SELECT Jun_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_54)
 # Fetch the result
@@ -558,7 +558,7 @@ cursor.execute(query_60)
 result_60 = cursor.fetchall()
 
 # July 2023
-query_61 = "SELECT Jul_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_61 = "SELECT Jul_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_61)
 # Fetch the result
@@ -576,7 +576,7 @@ cursor.execute(query_63)
 # Fetch the result
 result_63 = cursor.fetchone()
 
-query_64 = "SELECT Jul_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_64 = "SELECT Jul_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_64)
 # Fetch the result
@@ -631,7 +631,7 @@ cursor.execute(query_70)
 result_70 = cursor.fetchall()
 
 # August 2023
-query_71 = "SELECT Aug_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_71 = "SELECT Aug_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_71)
 # Fetch the result
@@ -649,7 +649,7 @@ cursor.execute(query_73)
 # Fetch the result
 result_73 = cursor.fetchone()
 
-query_74 = "SELECT Aug_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_74 = "SELECT Aug_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_74)
 # Fetch the result
@@ -704,7 +704,7 @@ cursor.execute(query_80)
 result_80 = cursor.fetchall()
 
 # September 2023
-query_81 = "SELECT Sep_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_81 = "SELECT Sep_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_81)
 # Fetch the result
@@ -722,7 +722,7 @@ cursor.execute(query_83)
 # Fetch the result
 result_83 = cursor.fetchone()
 
-query_84 = "SELECT Sep_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_84 = "SELECT Sep_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_84)
 # Fetch the result
@@ -777,7 +777,7 @@ cursor.execute(query_90)
 result_90 = cursor.fetchall()
 
 # October 2023
-query_91 = "SELECT Oct_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_91 = "SELECT Oct_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_91)
 # Fetch the result
@@ -795,7 +795,7 @@ cursor.execute(query_93)
 # Fetch the result
 result_93 = cursor.fetchone()
 
-query_94 = "SELECT Oct_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_94 = "SELECT Oct_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_94)
 # Fetch the result
@@ -850,7 +850,7 @@ cursor.execute(query_100)
 result_100 = cursor.fetchall()
 
 # November 2023
-query_101 = "SELECT Nov_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_101 = "SELECT Nov_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_101)
 # Fetch the result
@@ -868,7 +868,7 @@ cursor.execute(query_103)
 # Fetch the result
 result_103 = cursor.fetchone()
 
-query_104 = "SELECT Nov_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_104 = "SELECT Nov_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_104)
 # Fetch the result
@@ -923,7 +923,7 @@ cursor.execute(query_110)
 result_110 = cursor.fetchall()
 
 # December 2023
-query_111 = "SELECT Dec_23 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_111 = "SELECT Dec_23 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_111)
 # Fetch the result
@@ -941,7 +941,7 @@ cursor.execute(query_113)
 # Fetch the result
 result_113 = cursor.fetchone()
 
-query_114 = "SELECT Dec_23 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_114 = "SELECT Dec_23 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_114)
 # Fetch the result
@@ -997,7 +997,7 @@ cursor.execute(query_120)
 result_120 = cursor.fetchall()
 
 # January 2024
-query_121 = "SELECT Jan_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_121 = "SELECT Jan_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_121)
 # Fetch the result
@@ -1015,7 +1015,7 @@ cursor.execute(query_123)
 # Fetch the result
 result_123 = cursor.fetchone()
 
-query_124 = "SELECT Jan_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_124 = "SELECT Jan_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_124)
 # Fetch the result
@@ -1070,7 +1070,7 @@ cursor.execute(query_130)
 result_130 = cursor.fetchall()
 
 # February 2024
-query_131 = "SELECT Feb_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_131 = "SELECT Feb_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_131)
 # Fetch the result
@@ -1088,7 +1088,7 @@ cursor.execute(query_133)
 # Fetch the result
 result_133 = cursor.fetchone()
 
-query_134 = "SELECT Feb_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_134 = "SELECT Feb_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_134)
 # Fetch the result
@@ -1143,7 +1143,7 @@ cursor.execute(query_140)
 result_140 = cursor.fetchall()
 
 # March 2024
-query_141 = "SELECT Mar_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_141 = "SELECT Mar_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_141)
 # Fetch the result
@@ -1161,7 +1161,7 @@ cursor.execute(query_143)
 # Fetch the result
 result_143 = cursor.fetchone()
 
-query_144 = "SELECT Mar_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_144 = "SELECT Mar_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_144)
 # Fetch the result
@@ -1216,7 +1216,7 @@ cursor.execute(query_150)
 result_150 = cursor.fetchall()
 
 # April 2024
-query_151 = "SELECT Apr_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_151 = "SELECT Apr_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_151)
 # Fetch the result
@@ -1234,7 +1234,7 @@ cursor.execute(query_153)
 # Fetch the result
 result_153 = cursor.fetchone()
 
-query_154 = "SELECT Apr_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_154 = "SELECT Apr_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_154)
 # Fetch the result
@@ -1289,7 +1289,7 @@ cursor.execute(query_160)
 result_160 = cursor.fetchall()
 
 # May 2024
-query_161 = "SELECT May_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_161 = "SELECT May_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_161)
 # Fetch the result
@@ -1307,7 +1307,7 @@ cursor.execute(query_163)
 # Fetch the result
 result_163 = cursor.fetchone()
 
-query_164 = "SELECT May_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_164 = "SELECT May_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_164)
 # Fetch the result
@@ -1362,7 +1362,7 @@ cursor.execute(query_170)
 result_170 = cursor.fetchall()
 
 # June 2024
-query_171 = "SELECT Jun_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_171 = "SELECT Jun_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_171)
 # Fetch the result
@@ -1380,7 +1380,7 @@ cursor.execute(query_173)
 # Fetch the result
 result_173 = cursor.fetchone()
 
-query_174 = "SELECT Jun_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_174 = "SELECT Jun_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_174)
 # Fetch the result
@@ -1435,7 +1435,7 @@ cursor.execute(query_180)
 result_180 = cursor.fetchall()
 
 # July 2024
-query_181 = "SELECT Jul_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_181 = "SELECT Jul_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_181)
 # Fetch the result
@@ -1453,7 +1453,7 @@ cursor.execute(query_183)
 # Fetch the result
 result_183 = cursor.fetchone()
 
-query_184 = "SELECT Jul_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_184 = "SELECT Jul_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_184)
 # Fetch the result
@@ -1508,7 +1508,7 @@ cursor.execute(query_190)
 result_190 = cursor.fetchall()
 
 # August 2024
-query_191 = "SELECT Aug_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_191 = "SELECT Aug_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_191)
 # Fetch the result
@@ -1526,7 +1526,7 @@ cursor.execute(query_193)
 # Fetch the result
 result_193 = cursor.fetchone()
 
-query_194 = "SELECT Aug_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_194 = "SELECT Aug_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_194)
 # Fetch the result
@@ -1581,7 +1581,7 @@ cursor.execute(query_200)
 result_200 = cursor.fetchall()
 
 # September 2024
-query_201 = "SELECT Sep_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_201 = "SELECT Sep_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_201)
 # Fetch the result
@@ -1599,7 +1599,7 @@ cursor.execute(query_203)
 # Fetch the result
 result_203 = cursor.fetchone()
 
-query_204 = "SELECT Sep_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_204 = "SELECT Sep_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_204)
 # Fetch the result
@@ -1655,7 +1655,7 @@ cursor.execute(query_210)
 result_210 = cursor.fetchall()
 
 # October 2024
-query_211 = "SELECT Oct_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_211 = "SELECT Oct_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_211)
 # Fetch the result
@@ -1674,7 +1674,7 @@ cursor.execute(query_213)
 # Fetch the result
 result_213 = cursor.fetchone()
 
-query_214 = "SELECT Oct_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_214 = "SELECT Oct_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_214)
 # Fetch the result
@@ -1729,7 +1729,7 @@ cursor.execute(query_220)
 result_220 = cursor.fetchall()
 
 # November 2024
-query_221 = "SELECT Nov_24 FROM res_rate WHERE Short_Name = 'MORE Power'"
+query_221 = "SELECT Nov_24 FROM res_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_221)
 # Fetch the result
@@ -1747,7 +1747,7 @@ cursor.execute(query_223)
 # Fetch the result
 result_223 = cursor.fetchone()
 
-query_224 = "SELECT Nov_24 FROM gen_rate WHERE Short_Name = 'MORE Power'"
+query_224 = "SELECT Nov_24 FROM gen_rate WHERE Short_Name = 'MORE'"
 # Execute the query
 cursor.execute(query_224)
 # Fetch the result
@@ -1800,6 +1800,80 @@ ORDER BY Nov_24_Ranking_Vis ASC;
 """
 cursor.execute(query_230)
 result_230 = cursor.fetchall()
+
+# December 2024
+query_231 = "SELECT Dec_24 FROM res_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_231)
+# Fetch the result
+result_231 = cursor.fetchone()
+
+query_232 = "SELECT Dec_24 FROM res_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_232)
+# Fetch the result
+result_232 = cursor.fetchone()
+
+query_233 = "SELECT Dec_24 FROM res_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_233)
+# Fetch the result
+result_233 = cursor.fetchone()
+
+query_234 = "SELECT Dec_24 FROM gen_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_234)
+# Fetch the result
+result_234 = cursor.fetchone()
+
+query_235 = "SELECT Dec_24 FROM gen_rate WHERE Short_Name = 'CENECO'"
+# Execute the query
+cursor.execute(query_235)
+# Fetch the result
+result_235 = cursor.fetchone()
+
+query_236 = "SELECT Dec_24 FROM gen_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_236)
+# Fetch the result
+result_236 = cursor.fetchone()
+
+query_237 = """
+SELECT Short_Name, Dec_24
+FROM res_rate
+WHERE Dec_24_Ranking BETWEEN 1 AND 5
+ORDER BY Dec_24_Ranking ASC;
+"""
+cursor.execute(query_237)
+result_237 = cursor.fetchall()
+
+query_238 = """
+SELECT Short_Name, Dec_24
+FROM res_rate
+WHERE Dec_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Dec_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_238)
+result_238 = cursor.fetchall()
+
+query_239 = """
+SELECT Short_Name, Dec_24
+FROM gen_rate
+WHERE Dec_24_Ranking BETWEEN 1 AND 5
+ORDER BY Dec_24_Ranking ASC;
+"""
+cursor.execute(query_239)
+result_239 = cursor.fetchall()
+
+query_240 = """
+SELECT Short_Name, Dec_24
+FROM gen_rate
+WHERE Dec_24_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Dec_24_Ranking_Vis ASC;
+"""
+cursor.execute(query_240)
+result_240 = cursor.fetchall()
+
 
 # Styling for first dataframe
 def style_dataframe1(df):
@@ -5321,7 +5395,7 @@ elif month_selected == 'October 2024':
         df_5 = pd.DataFrame(table_5)
         st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
 
-else:
+elif month_selected == 'November 2024':
     # 1st Table
     # st.markdown("Residential Rate and Generation Rate of MORE Power, NEPC, and BLCI")
     st.markdown("""
@@ -5467,6 +5541,155 @@ else:
             "DU": [row[0] for row in result_230], # Extract Short_Name
             # "Generation Rate": [row[1] for row in result_230] # Extract Residential Rate
             "Generation Rate": [f"{float(row[1]):.4f}" for row in result_230]
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
+
+elif month_selected == 'December 2024':
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+
+    if result_231 and result_231[0] is not None:
+         dec_2024_result_231 = "{:.4f}".format(float(result_231[0]))
+    else:
+        dec_2024_result_231 = None
+    if result_232 and result_232[0] is not None:
+         dec_2024_result_232 = "{:.4f}".format(float(result_232[0]))
+    else:
+        dec_2024_result_232 = None
+    if result_233 and result_233[0] is not None:
+         dec_2024_result_233 = "{:.4f}".format(float(result_233[0]))
+    else:
+        dec_2024_result_233 = None
+    if result_234 and result_234[0] is not None:
+         dec_2024_result_234 = "{:.4f}".format(float(result_234[0]))
+    else:
+        dec_2024_result_234 = None
+    if result_235 and result_235[0] is not None:
+         dec_2024_result_235 = "{:.4f}".format(float(result_235[0]))
+    else:
+        dec_2024_result_235 = None
+    if result_236 and result_236[0] is not None:
+         dec_2024_result_236 = "{:.4f}".format(float(result_226[0]))
+    else:
+        dec_2024_result_236 = None
+
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [dec_2024_result_231, dec_2024_result_232, dec_2024_result_233],
+        "Generation Rate": [dec_2024_result_234, dec_2024_result_235, dec_2024_result_236]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_2 = {
+            "DU": [row[0] for row in result_237], # Extract Short_Name
+            # "Residential Rate": [row[1] for row in result_227] # Extract Residential Rate
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_237]
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
+
+    # 3rd Table
+    with col2:
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_3 = {
+            "DU": [row[0] for row in result_238], # Extract Short_Name
+            # "Residential Rate": [row[1] for row in result_228] # Extract Residential Rate
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_238]
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
+    
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_4 = {
+            "DU": [row[0] for row in result_239], # Extract Short_Name
+            # "Generation Rate": [row[1] for row in result_229] # Extract Residential Rate
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_239]
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
+
+    # 5th Table
+    with col4:
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_5 = {
+            "DU": [row[0] for row in result_240], # Extract Short_Name
+            # "Generation Rate": [row[1] for row in result_230] # Extract Residential Rate
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_240]
         }
 
         df_5 = pd.DataFrame(table_5)
