@@ -1808,7 +1808,7 @@ cursor.execute(query_231)
 # Fetch the result
 result_231 = cursor.fetchone()
 
-query_232 = "SELECT Dec_24 FROM res_rate WHERE Short_Name = 'CENECO'"
+query_232 = "SELECT Dec_24 FROM res_rate WHERE Short_Name = 'NEPC'"
 # Execute the query
 cursor.execute(query_232)
 # Fetch the result
@@ -1826,7 +1826,7 @@ cursor.execute(query_234)
 # Fetch the result
 result_234 = cursor.fetchone()
 
-query_235 = "SELECT Dec_24 FROM gen_rate WHERE Short_Name = 'CENECO'"
+query_235 = "SELECT Dec_24 FROM gen_rate WHERE Short_Name = 'NEPC'"
 # Execute the query
 cursor.execute(query_235)
 # Fetch the result
