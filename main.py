@@ -5586,7 +5586,7 @@ elif month_selected == 'December 2024':
     else:
         dec_2024_result_235 = None
     if result_236 and result_236[0] is not None:
-         dec_2024_result_236 = "{:.4f}".format(float(result_226[0]))
+         dec_2024_result_236 = "{:.4f}".format(float(result_236[0]))
     else:
         dec_2024_result_236 = None
 
