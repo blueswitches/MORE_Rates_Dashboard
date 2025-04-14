@@ -102,7 +102,7 @@ conn = mysql.connector.connect(
     port=3309,       
     database='du_rates_comparison',         
     user='cesra_dbm',             
-    password='ibIDN0NcnGYo71qDZuHw'      
+    password='eZ[g}OLgsTRBNhW'      
 )
 
 # Create a cursor object to interact with the database
