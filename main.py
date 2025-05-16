@@ -94,7 +94,7 @@ def get_base64_from_image(image):
 
 add_logo_with_text("more_power_logo.png", "Rates Dashboard", max_width=150, text_size=20, font_family="Helvetica")
 
-month_selected = st.sidebar.selectbox("For the month of", ["January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023", "September 2023", "October 2023", "November 2023", "December 2023", "January 2024", "February 2024", "March 2024", "April 2024", "May 2024", "June 2024", "July 2024", "August 2024", "September 2024", "October 2024", "November 2024", "December 2024"], index=0)
+month_selected = st.sidebar.selectbox("For the month of", ["January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023", "September 2023", "October 2023", "November 2023", "December 2023", "January 2024", "February 2024", "March 2024", "April 2024", "May 2024", "June 2024", "July 2024", "August 2024", "September 2024", "October 2024", "November 2024", "December 2024", "January 2025", "February 2025", "March 2025"], index=0)
 
 # MySQL connection
 conn = mysql.connector.connect(
@@ -1874,6 +1874,224 @@ ORDER BY Dec_24_Ranking_Vis ASC;
 cursor.execute(query_240)
 result_240 = cursor.fetchall()
 
+# January 2025
+query_241 = "SELECT Jan_25 FROM res_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_241)
+# Fetch the result
+result_241 = cursor.fetchone()
+
+query_242 = "SELECT Jan_25 FROM res_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_242)
+# Fetch the result
+result_242 = cursor.fetchone()
+
+query_243 = "SELECT Jan_25 FROM res_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_243)
+# Fetch the result
+result_243 = cursor.fetchone()
+
+query_244 = "SELECT Jan_25 FROM gen_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_244)
+# Fetch the result
+result_244 = cursor.fetchone()
+
+query_245 = "SELECT Jan_25 FROM gen_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_245)
+# Fetch the result
+result_245 = cursor.fetchone()
+
+query_246 = "SELECT Jan_25 FROM gen_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_246)
+# Fetch the result
+result_246 = cursor.fetchone()
+
+query_247 = """
+SELECT Short_Name, Jan_25
+FROM res_rate
+WHERE Jan_25_Ranking BETWEEN 1 AND 5
+ORDER BY Jan_25_Ranking ASC;
+"""
+cursor.execute(query_247)
+result_247 = cursor.fetchall()
+
+query_248 = """
+SELECT Short_Name, Jan_25
+FROM res_rate
+WHERE Jan_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Jan_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_248)
+result_248 = cursor.fetchall()
+
+query_249 = """
+SELECT Short_Name, Jan_25
+FROM gen_rate
+WHERE Jan_25_Ranking BETWEEN 1 AND 5
+ORDER BY Jan_25_Ranking ASC;
+"""
+cursor.execute(query_249)
+result_249 = cursor.fetchall()
+
+query_250 = """
+SELECT Short_Name, Jan_25
+FROM gen_rate
+WHERE Jan_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Jan_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_250)
+result_250 = cursor.fetchall()
+
+# February 2025
+query_251 = "SELECT Feb_25 FROM res_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_251)
+# Fetch the result
+result_251 = cursor.fetchone()
+
+query_252 = "SELECT Feb_25 FROM res_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_252)
+# Fetch the result
+result_252 = cursor.fetchone()
+
+query_253 = "SELECT Feb_25 FROM res_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_253)
+# Fetch the result
+result_253 = cursor.fetchone()
+
+query_254 = "SELECT Feb_25 FROM gen_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_254)
+# Fetch the result
+result_254 = cursor.fetchone()
+
+query_255 = "SELECT Feb_25 FROM gen_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_255)
+# Fetch the result
+result_255 = cursor.fetchone()
+
+query_256 = "SELECT Feb_25 FROM gen_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_256)
+# Fetch the result
+result_256 = cursor.fetchone()
+
+query_257 = """
+SELECT Short_Name, Feb_25
+FROM res_rate
+WHERE Feb_25_Ranking BETWEEN 1 AND 5
+ORDER BY Feb_25_Ranking ASC;
+"""
+cursor.execute(query_257)
+result_257 = cursor.fetchall()
+
+query_258 = """
+SELECT Short_Name, Feb_25
+FROM res_rate
+WHERE Feb_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Feb_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_258)
+result_258 = cursor.fetchall()
+
+query_259 = """
+SELECT Short_Name, Feb_25
+FROM gen_rate
+WHERE Feb_25_Ranking BETWEEN 1 AND 5
+ORDER BY Feb_25_Ranking ASC;
+"""
+cursor.execute(query_259)
+result_259 = cursor.fetchall()
+
+query_260 = """
+SELECT Short_Name, Feb_25
+FROM gen_rate
+WHERE Feb_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Feb_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_260)
+result_260 = cursor.fetchall()
+
+# March 2025
+query_261 = "SELECT Mar_25 FROM res_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_261)
+# Fetch the result
+result_261 = cursor.fetchone()
+
+query_262 = "SELECT Mar_25 FROM res_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_262)
+# Fetch the result
+result_262 = cursor.fetchone()
+
+query_263 = "SELECT Mar_25 FROM res_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_263)
+# Fetch the result
+result_263 = cursor.fetchone()
+
+query_264 = "SELECT Mar_25 FROM gen_rate WHERE Short_Name = 'MORE'"
+# Execute the query
+cursor.execute(query_264)
+# Fetch the result
+result_264 = cursor.fetchone()
+
+query_265 = "SELECT Mar_25 FROM gen_rate WHERE Short_Name = 'NEPC'"
+# Execute the query
+cursor.execute(query_265)
+# Fetch the result
+result_265 = cursor.fetchone()
+
+query_266 = "SELECT Mar_25 FROM gen_rate WHERE Short_Name = 'BLCI'"
+# Execute the query
+cursor.execute(query_266)
+# Fetch the result
+result_266 = cursor.fetchone()
+
+query_267 = """
+SELECT Short_Name, Mar_25
+FROM res_rate
+WHERE Mar_25_Ranking BETWEEN 1 AND 5
+ORDER BY Mar_25_Ranking ASC;
+"""
+cursor.execute(query_267)
+result_267 = cursor.fetchall()
+
+query_268 = """
+SELECT Short_Name, Mar_25
+FROM res_rate
+WHERE Mar_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Mar_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_268)
+result_268 = cursor.fetchall()
+
+query_269 = """
+SELECT Short_Name, Mar_25
+FROM gen_rate
+WHERE Mar_25_Ranking BETWEEN 1 AND 5
+ORDER BY Mar_25_Ranking ASC;
+"""
+cursor.execute(query_269)
+result_269 = cursor.fetchall()
+
+query_270 = """
+SELECT Short_Name, Mar_25
+FROM gen_rate
+WHERE Mar_25_Ranking_Vis BETWEEN 1 AND 5
+ORDER BY Mar_25_Ranking_Vis ASC;
+"""
+cursor.execute(query_270)
+result_270 = cursor.fetchall()
 
 # Styling for first dataframe
 def style_dataframe1(df):
@@ -5694,3 +5912,439 @@ elif month_selected == 'December 2024':
 
         df_5 = pd.DataFrame(table_5)
         st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
+
+elif month_selected == 'January 2025':
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+
+    if result_241 and result_241[0] is not None:
+         jan_2025_result_241 = "{:.4f}".format(float(result_241[0]))
+    else:
+        jan_2025_result_241 = None
+    if result_242 and result_242[0] is not None:
+         jan_2025_result_242 = "{:.4f}".format(float(result_242[0]))
+    else:
+        jan_2025_result_242 = None
+    if result_243 and result_243[0] is not None:
+         jan_2025_result_243 = "{:.4f}".format(float(result_243[0]))
+    else:
+        jan_2025_result_243 = None
+    if result_244 and result_244[0] is not None:
+         jan_2025_result_244 = "{:.4f}".format(float(result_244[0]))
+    else:
+        jan_2025_result_244 = None
+    if result_245 and result_245[0] is not None:
+         jan_2025_result_245 = "{:.4f}".format(float(result_245[0]))
+    else:
+        jan_2025_result_245 = None
+    if result_246 and result_246[0] is not None:
+         jan_2025_result_246 = "{:.4f}".format(float(result_246[0]))
+    else:
+        jan_2025_result_246 = None
+
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [jan_2025_result_241, jan_2025_result_242, jan_2025_result_243],
+        "Generation Rate": [jan_2025_result_244, jan_2025_result_245, jan_2025_result_246]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_2 = {
+            "DU": [row[0] for row in result_247], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_247]
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
+
+    # 3rd Table
+    with col2:
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_3 = {
+            "DU": [row[0] for row in result_248], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_248]
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
+    
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_4 = {
+            "DU": [row[0] for row in result_249], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_249]
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
+
+    # 5th Table
+    with col4:
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_5 = {
+            "DU": [row[0] for row in result_250], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_250]
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
+
+elif month_selected == 'February 2025':
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+
+    if result_251 and result_251[0] is not None:
+         feb_2025_result_251 = "{:.4f}".format(float(result_251[0]))
+    else:
+        feb_2025_result_251 = None
+    if result_252 and result_252[0] is not None:
+         feb_2025_result_252 = "{:.4f}".format(float(result_252[0]))
+    else:
+        feb_2025_result_252 = None
+    if result_253 and result_253[0] is not None:
+         feb_2025_result_253 = "{:.4f}".format(float(result_253[0]))
+    else:
+        feb_2025_result_253 = None
+    if result_254 and result_254[0] is not None:
+         feb_2025_result_254 = "{:.4f}".format(float(result_254[0]))
+    else:
+        feb_2025_result_254 = None
+    if result_255 and result_255[0] is not None:
+         feb_2025_result_255 = "{:.4f}".format(float(result_255[0]))
+    else:
+        feb_2025_result_255 = None
+    if result_256 and result_256[0] is not None:
+         feb_2025_result_256 = "{:.4f}".format(float(result_256[0]))
+    else:
+        feb_2025_result_256 = None
+
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [feb_2025_result_251, feb_2025_result_252, feb_2025_result_253],
+        "Generation Rate": [feb_2025_result_254, feb_2025_result_255, feb_2025_result_256]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_2 = {
+            "DU": [row[0] for row in result_257], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_257]
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
+
+    # 3rd Table
+    with col2:
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_3 = {
+            "DU": [row[0] for row in result_258], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_258]
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
+    
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_4 = {
+            "DU": [row[0] for row in result_259], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_259]
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
+
+    # 5th Table
+    with col4:
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_5 = {
+            "DU": [row[0] for row in result_260], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_260]
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
+
+elif month_selected == 'March 2025':
+    st.markdown("""
+    <style>
+        .custom-markdown {
+            padding: 5px 15px; /* Adjust padding to fit text more closely */
+            background-color: #E7D37F; /* Yellow background for highlighting */
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+    <div class="custom-markdown">
+        Residential Rate and Generation Rate of MORE, NEPC, and BLCI
+    </div>
+""", unsafe_allow_html=True)
+
+    if result_261 and result_261[0] is not None:
+         mar_2025_result_261 = "{:.4f}".format(float(result_261[0]))
+    else:
+        mar_2025_result_261 = None
+    if result_262 and result_262[0] is not None:
+         mar_2025_result_262 = "{:.4f}".format(float(result_262[0]))
+    else:
+        mar_2025_result_262 = None
+    if result_263 and result_263[0] is not None:
+         mar_2025_result_263 = "{:.4f}".format(float(result_263[0]))
+    else:
+        mar_2025_result_263 = None
+    if result_264 and result_264[0] is not None:
+         mar_2025_result_264 = "{:.4f}".format(float(result_264[0]))
+    else:
+        mar_2025_result_264 = None
+    if result_265 and result_265[0] is not None:
+         mar_2025_result_265 = "{:.4f}".format(float(result_265[0]))
+    else:
+        mar_2025_result_265 = None
+    if result_266 and result_266[0] is not None:
+         mar_2025_result_266 = "{:.4f}".format(float(result_266[0]))
+    else:
+        mar_2025_result_266 = None
+
+    table_1 = {
+        "": ["MORE", "NEPC", "BLCI"],
+        "Residential Rate": [mar_2025_result_261, mar_2025_result_262, mar_2025_result_263],
+        "Generation Rate": [mar_2025_result_264, mar_2025_result_265, mar_2025_result_266]
+    }
+
+    df = pd.DataFrame(table_1)
+    st.dataframe(style_dataframe1(df), hide_index=True, use_container_width=True)
+
+    # Table 2 and Table 3 side-by-side
+    col1, col2 = st.columns(2)
+
+    # 2nd Table
+    with col1:
+        # st.markdown("Top 5 Lowest Residential Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_2 = {
+            "DU": [row[0] for row in result_267], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_267]
+        }
+
+        df_2 = pd.DataFrame(table_2)
+        st.dataframe(style_dataframe2(df_2), hide_index=True, use_container_width=True)
+
+    # 3rd Table
+    with col2:
+        # st.markdown("Top 5 Lowest Residential Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Residential Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_3 = {
+            "DU": [row[0] for row in result_268], # Extract Short_Name
+            "Residential Rate": [f"{float(row[1]):.4f}" for row in result_268]
+        }
+
+        df_3 = pd.DataFrame(table_3)
+        st.dataframe(style_dataframe2(df_3), hide_index=True, use_container_width=True)
+    
+    # Table 4 and Table 5 side-by-side
+    col3, col4 = st.columns(2)
+
+    # 4th Table
+    with col3:
+        # st.markdown("Top 5 Lowest Generation Rate in the Philippines")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Philippines
+    </div>
+""", unsafe_allow_html=True)
+        table_4 = {
+            "DU": [row[0] for row in result_269], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_269]
+        }
+
+        df_4 = pd.DataFrame(table_4)
+        st.dataframe(style_dataframe3(df_4), hide_index=True, use_container_width=True)
+
+    # 5th Table
+    with col4:
+        # st.markdown("Top 5 Lowest Generation Rate in the Visayas")
+        st.markdown("""
+    <style>
+        .custom-markdown {
+            padding-bottom: 0px; /* Remove bottom padding */
+        }
+    </style>
+    <div class="custom-markdown">
+        Top 5 Lowest Generation Rate in the Visayas
+    </div>
+""", unsafe_allow_html=True)
+        
+        table_5 = {
+            "DU": [row[0] for row in result_270], # Extract Short_Name
+            "Generation Rate": [f"{float(row[1]):.4f}" for row in result_270]
+        }
+
+        df_5 = pd.DataFrame(table_5)
+        st.dataframe(style_dataframe3(df_5), hide_index=True, use_container_width=True)
+
